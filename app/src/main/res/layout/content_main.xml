@@ -1,0 +1,85 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#424242"
+    android:fitsSystemWindows="true"
+    app:layout_scrollFlags="scroll|enterAlways"
+    tools:context="sahil.iiitk_foundationday_app.views.MainActivity">
+    <!--
+             Made by tanuj
+                        -->
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        >
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/coll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageSwitcher
+                android:id="@+id/BG"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#000000"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="pin" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:elevation="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_anchorGravity="top"
+        app:layout_anchor="@id/appBar"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <!--
+                Made by tanuj
+                -->
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="#ff9c5e"
+            android:elevation="5dp"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="#ffffff"
+            app:tabMode="scrollable">
+
+        </android.support.design.widget.TabLayout>
+    </android.support.v4.view.ViewPager>
+
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/home_bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:bmb_buttonEnum="textOutsideCircle"
+        app:bmb_piecePlaceEnum="piecePlace_dot_4_2"
+        app:bmb_buttonPlaceEnum="buttonPlace_sc_4_1"
+        app:bmb_backgroundEffect="true"
+        app:bmb_backPressListened="true"
+        />
+</android.support.design.widget.CoordinatorLayout>

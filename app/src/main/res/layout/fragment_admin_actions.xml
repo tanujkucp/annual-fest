@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.AdminActionsFragment">
+    <!--
+           Made by Tanuj
+                        -->
+    <SearchView
+        android:id="@+id/admin_actions_search"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#ffffff"
+        android:queryHint="Enter search text" />
+
+    <Spinner
+        android:id="@+id/admin_actions_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/admin_actions_search"
+        android:backgroundTint="@color/white"
+        android:gravity="center"
+        android:spinnerMode="dialog"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/user_recycler_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/admin_actions_search"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="All users"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/user_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_recycler_label"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp" />
+
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/admin_bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:bmb_boomEnum="boomParabola_2"
+        app:bmb_buttonEnum="ham"
+        app:bmb_buttonPlaceEnum="buttonPlace_ham_3"
+        app:bmb_piecePlaceEnum="piecePlace_ham_3"
+        app:bmb_showMoveEaseEnum="inOutQuint" />
+
+
+</RelativeLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp">
+    <!--
+             Made by tanuj
+                        -->
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:id="@+id/message_card"
+        android:layoutDirection="ltr"
+        android:minWidth="100dp"
+        app:cardBackgroundColor="@color/cornflower_blue_two"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="10dp"
+            android:layoutDirection="ltr">
+
+            <TextView
+                android:id="@+id/message_msg_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/message_time_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/message_msg_out"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="0dp"
+                android:text="12:00 am"
+                android:textColor="@color/white_two"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0e0e0"
+    tools:context=".views.UserActivityPage">
+
+    <!--
+             Made by tanuj
+                        -->
+    <TextView
+        android:id="@+id/myactivity_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Activity"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#212121"
+        android:layout_marginTop="5dp"
+        />
+    <View
+        android:layout_below="@id/myactivity_label"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#424242"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myactivity_label"
+        android:layout_marginTop="8dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/myactivity_reg_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/myactivity_reg_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registered Events"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:background="#F5F5F5"
+                android:elevation="5dp"
+                android:textColor="@color/black"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/myactivity_reg_recycler"
+                android:layout_below="@id/myactivity_reg_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:minHeight="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/myactivity_fav_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myactivity_reg_card"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/myactivity_fav_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Favourite Events"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:background="#F5F5F5"
+                android:elevation="5dp"
+                android:textColor="@color/black"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/myactivity_fav_recycler"
+                android:layout_below="@id/myactivity_fav_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:minHeight="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

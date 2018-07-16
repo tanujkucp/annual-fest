@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:williamchart="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.AdminInsightsFragment">
+    <!--
+            Made by Tanuj
+                        -->
+    <android.support.v7.widget.CardView
+        android:id="@+id/insights_pieCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Total Registrations"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <org.eazegraph.lib.charts.PieChart
+            android:id="@+id/admin_insights_pie"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="24dp"
+            android:padding="4dp"
+            app:egLegendColor="#000000"
+            app:egLegendTextSize="18sp"
+            app:egUsePieRotation="true"
+            app:egValueTextSize="36sp" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/insights_pieCard"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Technical Club"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+        <com.db.chart.view.HorizontalBarChartView
+            android:id="@+id/barChart1"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            williamchart:chart_axis="false"
+            williamchart:chart_axisBorderSpacing="0dp"
+            williamchart:chart_barSpacing="3dp"
+            williamchart:chart_fontSize="12dp"
+            williamchart:chart_labelColor="#FF616161"
+            williamchart:chart_cornerRadius="5dp"
+            />
+        <TextView
+            android:id="@+id/barChart1_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/barChart1"
+            android:layout_alignRight="@id/barChart1"
+            android:layout_marginBottom="10dp"
+            android:layout_alignEnd="@id/barChart1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:elevation="5dp"
+            android:padding="5dp"
+            android:background="@drawable/ic_block1"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            />
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="5dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Cultural Club"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <com.db.chart.view.HorizontalBarChartView
+                android:id="@+id/barChart2"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
+                williamchart:chart_axis="false"
+                williamchart:chart_axisBorderSpacing="0dp"
+                williamchart:chart_barSpacing="3dp"
+                williamchart:chart_fontSize="12dp"
+                williamchart:chart_labelColor="#FF616161"
+                williamchart:chart_cornerRadius="5dp"
+                />
+            <TextView
+                android:id="@+id/barChart2_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/barChart2"
+                android:layout_alignRight="@id/barChart2"
+                android:layout_marginBottom="10dp"
+                android:layout_alignEnd="@id/barChart2"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:elevation="5dp"
+                android:padding="5dp"
+                android:background="@drawable/ic_block1"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="5dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Literary and Dramatics Club"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <com.db.chart.view.HorizontalBarChartView
+                    android:id="@+id/barChart3"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="12dp"
+                    williamchart:chart_axis="false"
+                    williamchart:chart_axisBorderSpacing="0dp"
+                    williamchart:chart_barSpacing="3dp"
+                    williamchart:chart_fontSize="12dp"
+                    williamchart:chart_labelColor="#FF616161"
+                    williamchart:chart_cornerRadius="5dp"
+                    />
+                <TextView
+                    android:id="@+id/barChart3_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/barChart3"
+                    android:layout_alignRight="@id/barChart3"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignEnd="@id/barChart3"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:elevation="5dp"
+                    android:padding="5dp"
+                    android:background="@drawable/ic_block1"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="5dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Fine Arts and Photography Club"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <com.db.chart.view.HorizontalBarChartView
+                    android:id="@+id/barChart4"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="12dp"
+                    williamchart:chart_axis="false"
+                    williamchart:chart_axisBorderSpacing="0dp"
+                    williamchart:chart_barSpacing="3dp"
+                    williamchart:chart_fontSize="12dp"
+                    williamchart:chart_labelColor="#616161"
+                    williamchart:chart_cornerRadius="5dp"
+                    />
+                <TextView
+                    android:id="@+id/barChart4_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/barChart4"
+                    android:layout_alignRight="@id/barChart4"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignEnd="@id/barChart4"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:elevation="5dp"
+                    android:padding="5dp"
+                    android:background="@drawable/ic_block1"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</RelativeLayout>
