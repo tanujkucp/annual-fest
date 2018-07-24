@@ -70,8 +70,8 @@ public class Splash_Activity extends AppCompatActivity {
             public void run()
             {
                 try{
-                    // add sleep
-                    sleep(4000);
+                    //todo add sleep
+                   // sleep(4000);
                     Intent i;
                        if (isLoggedIn()){
                            i = new Intent(Splash_Activity.this,MainActivity.class);

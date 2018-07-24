@@ -37,13 +37,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".views.ParentForFrag"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".views.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".views.DetailedEvent"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".views.UploadQuestionActivity"
             android:screenOrientation="portrait" />
@@ -62,7 +64,8 @@
 
         <activity
             android:name=".views.EventRegActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".views.AdminPage"
             android:screenOrientation="portrait" />

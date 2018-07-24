@@ -24,6 +24,7 @@
             android:layout_marginTop="10dp"
             android:textColorHint="@color/offwhite">
 
+
             <EditText
                 android:id="@+id/name_input"
                 android:layout_width="match_parent"
@@ -37,6 +38,22 @@
                 android:textColor="@color/offwhite"
                 android:textColorHint="#999999" />
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/reg_later"
+            android:fontFamily="serif"
+            android:typeface="monospace"
+            android:textSize="20sp"
+            android:layout_above="@id/name_input"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register Later"
+            />
 
         <TextView
             android:id="@+id/col"
@@ -200,7 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/Year"
             android:backgroundTint="@color/offwhite"
-            android:checkedButton="@id/female"
+            android:checkedButton="@id/male"
             android:orientation="horizontal"
             android:paddingStart="100dp"
             android:paddingTop="3dp">
@@ -281,21 +298,7 @@
             android:text="Register"
             android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/reg_later"
-            android:layout_below="@+id/submit"
-            android:fontFamily="serif"
-            android:typeface="monospace"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register Later"
-            />
+
 
     </RelativeLayout>
 </ScrollView>

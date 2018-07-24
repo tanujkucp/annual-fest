@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121"
+    android:background="@color/grey_background"
     tools:context="sahil.iiitk_foundationday_app.views.HelplineFragment">
     <!--
     Made by tanuj
@@ -21,7 +21,8 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="CONTACTS"
-        android:textColor="#eebe00"
+        android:textStyle="bold"
+        android:textColor="@color/blue900"
         android:textSize="20sp" />
 
     <View
@@ -31,7 +32,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
-        android:background="#eebe00" />
+        android:background="@color/blue500" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/grid"
@@ -50,9 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:textStyle="bold"
         android:gravity="center_horizontal"
         android:text="FOR APP RELATED QUERY"
-        android:textColor="#eebe00"
+        android:textColor="@color/blue900"
         android:textSize="20sp" />
 
     <View
@@ -62,7 +64,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
-        android:background="#eebe00" />
+        android:background="@color/blue300" />
     <TextView
         android:id="@+id/tv_name5"
         android:layout_width="match_parent"
@@ -72,7 +74,7 @@
         android:layout_marginTop="20dp"
         android:textSize="20dp"
         android:gravity="center"
-        android:textColor="#eebe00"/>
+        android:textColor="@color/blue800"/>
     <TextView
         android:id="@+id/tv_number5"
         android:layout_width="match_parent"
@@ -80,7 +82,8 @@
         android:layout_below="@+id/tv_name5"
         android:text="+91-76655 17141"
         android:gravity="center"
-        android:textColor="#ffffff"/>
+        android:textColor="#000000"
+        android:textSize="15dp"/>
     <TextView
         android:id="@+id/tv_info5"
         android:layout_width="match_parent"
@@ -88,7 +91,7 @@
         android:layout_below="@+id/tv_number5"
         android:text="App developer"
         android:gravity="center"
-        android:textColor="#ffffff"/>
+        android:textColor="@color/grey800"/>
 
     <TextView
         android:layout_below="@+id/tv_number5"
@@ -99,7 +102,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
         android:text="FOR ANY OTHER QUERIES"
-        android:textColor="#eebe00"
+        android:textColor="@color/blue800"
         android:textSize="20sp" />
     <TextView
         android:id="@+id/tv_query"
@@ -108,7 +111,7 @@
         android:layout_below="@+id/label_emailus"
         android:text="Mail us at contactus@flairfiesta.com"
         android:gravity="center"
-        android:textColor="#ffffff"/>
+        android:textColor="#000000"/>
 
 </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#d75404</color>
-    <color name="colorPrimaryDark">#bd3e85</color>
+    <color name="colorPrimaryDark">#616161</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
     <color name="status">#000000</color>
@@ -31,6 +31,7 @@
     <color name="warm_grey_three">#8b8b8b</color>
     <color name="warm_grey_four">#979797</color>
     <color name="dark_mint">#51c05c</color>
+    <color name="main_tab">#03A9F4</color>
     <color name="cornflower_blue_two">#4f62d7</color>
     <color name="cornflower_blue_two_24">#3d4f62d7</color>
     <color name="cornflower_blue_two_dark">#475bd4</color>
@@ -42,6 +43,28 @@
     <color name="dialog_date_text">@color/warm_grey_two</color>
     <color name="dialog_unread_text">@color/white</color>
     <color name="dialog_unread_bubble">@color/dark_mint</color>
+
+    <!--New colors-->
+    <color name="toolbar_grey">@color/grey500</color>
+    <color name="grey_background">@color/grey100</color>
+    <color name="grey50">#fafafa</color>
+    <color name="grey100">#f5f5f5</color>
+    <color name="grey200">#eeeeee</color>
+    <color name="grey300">#E0E0E0</color>
+    <color name="grey400">#BDBDBD</color>
+    <color name="grey500">#9E9E9E</color>
+    <color name="grey700">#616161</color>
+    <color name="grey800">#424242</color>
+    <color name="grey900">#212121</color>
+
+    <color name="blue500">#2196F3</color>
+    <color name="blue200">#90CAF9</color>
+    <color name="blue300">#64B5F6</color>
+    <color name="blue800">#1565C0</color>
+    <color name="blue900">#0D47A1</color>
+    <color name="blue100">#BBDEFB</color>
+
+    <color name="pink800">#D81B60</color>
 
 
 </resources>
