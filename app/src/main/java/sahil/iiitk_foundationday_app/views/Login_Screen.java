@@ -54,7 +54,7 @@ import sahil.iiitk_foundationday_app.model.User;
 
 public class Login_Screen extends AppCompatActivity
 {
-    TextView reg_later;
+    Button reg_later;
     ImageView inb;
     EditText id;
     Button ff_login_button;
@@ -118,7 +118,7 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setEnabled(true);
         signInButton.setEnabled(true);
         ff_login_button.setEnabled(true);
-        reg_later=(TextView)findViewById(R.id.reg_later);
+        reg_later=(Button) findViewById(R.id.reg_later);
         avi = (AVLoadingIndicatorView) findViewById(R.id.AVLoadingIndicatorView);
         mtv = (MatchTextView) findViewById(R.id.hello);
         mtv.setText("FLAIR FIESTA 2K18");
