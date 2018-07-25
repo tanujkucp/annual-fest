@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:layout_marginBottom="10dp"
-    android:background="#212121">
+    android:background="@color/grey_background">
     <!--
    Made by tanuj
    -->
@@ -14,21 +14,25 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:text="ABC"
         android:gravity="center"
-        android:textColor="#eebe00"/>
+        android:textColor="@color/blue800"/>
     <TextView
         android:id="@+id/card_contact_phone"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/card_contact_name"
         android:gravity="center"
-        android:textColor="#ffffff"/>
+        android:textSize="15sp"
+        android:text="458789986665"
+        android:textColor="#000000"/>
     <TextView
         android:id="@+id/card_contact_title"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/card_contact_phone"
         android:gravity="center"
-        android:textColor="#ffffff"/>
+        android:text="coordundgf"
+        android:textColor="@color/grey700"/>
 
 </RelativeLayout>

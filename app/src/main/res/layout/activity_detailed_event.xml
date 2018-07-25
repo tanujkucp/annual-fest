@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e0e0e0"
+    android:background="@color/grey100"
     android:fitsSystemWindows="true"
     app:layout_scrollFlags="scroll|enterAlways"
     tools:context="sahil.iiitk_foundationday_app.views.DetailedEvent">
@@ -23,14 +23,14 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/toolbar_grey"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/event_picture"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:elevation="5dp"
+
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="pin" />
@@ -38,7 +38,7 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/event_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="53dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -49,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
+        android:background="@color/grey_background"
         android:padding="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -64,19 +65,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                app:cardBackgroundColor="#ECEFF1"
+                app:cardBackgroundColor="@color/grey300"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="8dp">
 
                     <TextView
                         android:id="@+id/event_date_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:gravity="left"
                         android:text="23Mar 9:30 AM"
@@ -88,28 +90,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/event_date_time"
+                        android:layout_centerHorizontal="true"
                         android:gravity="left"
                         android:text="Student Activity Centre"
-                        android:textColor="#9C27B0"
+                        android:textColor="@color/blue800"
                         android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/event_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="right"
+                        android:layout_below="@id/event_venue"
                         android:text="Team Event"
-                        android:textColor="#F44336"
-                        android:textSize="18dp" />
+                        android:textColor="@color/pink800"
+                        android:textSize="17dp" />
 
                     <TextView
                         android:id="@+id/event_regfee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/event_venue"
+                        android:layout_below="@+id/event_type"
                         android:gravity="left"
                         android:text="Registration fee: 50/-"
                         android:textColor="#0d02ab"
@@ -122,7 +122,7 @@
                         android:layout_below="@+id/event_regfee"
                         android:gravity="left"
                         android:text="Last date to pay registration fee: 23Mar 18"
-                        android:textColor="#37474F"
+                        android:textColor="@color/grey900"
                         android:textSize="15dp" />
 
                     <TextView
@@ -132,8 +132,8 @@
                         android:layout_below="@+id/event_last_date"
                         android:gravity="left"
                         android:text="Contact: +91 1234567890"
-                        android:textColor="#424242"
-                        android:textSize="15dp" />
+                        android:textColor="@color/grey900"
+                        android:textSize="17dp" />
 
                     <TextView
                         android:id="@+id/event_prize"
@@ -141,9 +141,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/event_contact_details"
                         android:layout_marginBottom="10dp"
+                        android:layout_marginTop="3dp"
                         android:gravity="left"
                         android:text=" Prizes worth \u20B9 15000/-"
-                        android:textColor="#4CAF50"
+                        android:textColor="@color/blue900"
                         android:textSize="20dp"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -156,7 +157,7 @@
                 android:layout_below="@+id/event_overview_card"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="5dp"
-                app:cardBackgroundColor="#ECEFF1"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp">
 

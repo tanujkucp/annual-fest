@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="200dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#607d8b"
+    android:background="@color/grey500"
     tools:context="sahil.iiitk_foundationday_app.views.MainActivity"
     android:orientation="vertical">
     <!--
@@ -14,8 +14,8 @@
         android:id="@+id/nav_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="25dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="15dp"
         android:src="@drawable/ic_launcher_round" />
 
 
@@ -24,26 +24,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/nav_logo"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/nav_logo"
         android:gravity="center"
-        android:text="Flair Fiesta 2k19"
-        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="@string/app_name"
+        android:textColor="#C01558"
         android:textSize="20sp" />
-    <Button
-        android:id="@+id/nav_myactivity_button"
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="1dp"
         android:layout_below="@id/nav_name"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
+        android:layout_alignLeft="@id/nav_name"
         android:layout_toRightOf="@id/nav_logo"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"
-        android:text="My Activity >"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:background="@drawable/my_activity_button"
-        />
+        android:layout_alignRight="@id/nav_name"
+        android:background="#F79535"/>
+
 
     <TextView
         android:id="@+id/nav_ffid"
@@ -53,8 +51,24 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
         android:gravity="center"
-        android:text="Your FFID is FF0101"
+        android:layout_marginTop="5dp"
+        android:text=""
         android:textColor="#ffffff"
         android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/nav_myactivity_button"
+        android:layout_below="@id/nav_ffid"
+        android:layout_width="200dp"
+        android:layout_height="38dp"
+        android:layout_marginLeft="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="My Profile >"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:background="@drawable/my_activity_button"
+        />
 
 </RelativeLayout>

@@ -17,7 +17,7 @@ Made by tanuj
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:layout_gravity="center"
-        card_view:cardBackgroundColor="#e0e0e0"
+        card_view:cardBackgroundColor="@color/grey50"
         card_view:cardCornerRadius="5dp"
         card_view:cardElevation="20dp">
 

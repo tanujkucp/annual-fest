@@ -2,26 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121"
+    android:background="@color/grey_background"
     tools:context="sahil.iiitk_foundationday_app.views.EventsFragment">
     <!--
     Made by tanuj
     -->
-    <TextView
-        android:id="@+id/event_frag_clubname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:textColor="#ffffff"
-        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewEvents"
-        android:background="#212121"
-        android:layout_below="@id/event_frag_clubname"
-        android:layout_marginTop="10dp"
+        android:background="@color/grey_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

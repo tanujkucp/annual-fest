@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity
         nav_ffid = navigationView.getHeaderView(0).findViewById(R.id.nav_ffid);
         gotoMyactivity = navigationView.getHeaderView(0).findViewById(R.id.nav_myactivity_button);
         SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
-        if (!pref.getString("FFID", "").equals("")) {
+        if (!pref.getString("FFID", "").isEmpty()) {
             nav_ffid.setText("Your FFID is " + pref.getString("FFID", ""));
         }
         gotoMyactivity.setOnClickListener(new View.OnClickListener() {

@@ -8,7 +8,9 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -43,7 +45,6 @@ import sahil.iiitk_foundationday_app.model.SingleEventPersonal;
 
 public class EventRegActivity extends AppCompatActivity {
     LinearLayout lv1, lv2;
-    RelativeLayout back;
     Spinner s1;
     int min, max, club_number, check_number,event_number;
     String event_name, body,formattedDate,eventID;
@@ -62,13 +63,8 @@ public class EventRegActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_reg);
-
-        back = findViewById(R.id.reg_back);
-        try {
-            back.setBackgroundResource(R.drawable.th);
-        } catch (OutOfMemoryError e) {
-            Log.e("image", "ImageError: " + e.getMessage());
-        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Event Registration");
 
         db = FirebaseDatabase.getInstance();
         savedData = getSharedPreferences("userInfo", MODE_PRIVATE);
@@ -103,8 +99,11 @@ public class EventRegActivity extends AppCompatActivity {
                 edd.setId(id);
                 edd.getBackground().setColorFilter(getResources().getColor(R.color.hh), PorterDuff.Mode.SRC_ATOP);
                 edd.setHint("Team Name");
+                InputFilter[] filters = new InputFilter[1];
+                filters[0] = new InputFilter.LengthFilter(20); //Filter to 20 characters
+                edd.setFilters(filters);
                 edd.setHintTextColor(getResources().getColor(R.color.hh));
-                edd.setTextColor(getResources().getColor(R.color.tt));
+                edd.setTextColor(getResources().getColor(R.color.black));
                 edd.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.FILL_PARENT,
                         AbsListView.LayoutParams.WRAP_CONTENT));
                 lv2.addView(edd);
@@ -114,14 +113,17 @@ public class EventRegActivity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     lv1.removeAllViews();
                     allEds.clear();
+                    InputFilter[] filters = new InputFilter[1];
+                    filters[0] = new InputFilter.LengthFilter(6); //Filter to 6 characters
                     for (int t = 0; t < (i + min); t++) {
                         ed = new EditText(getApplicationContext());
                         allEds.add(ed);
                         ed.setId(t + 1);
+                        ed.setFilters(filters);
                         ed.getBackground().setColorFilter(getResources().getColor(R.color.hh), PorterDuff.Mode.SRC_ATOP);
                         ed.setHint("Member " + (t + 1) + " FFID");
                         ed.setHintTextColor(getResources().getColor(R.color.hh));
-                        ed.setTextColor(getResources().getColor(R.color.tt));
+                        ed.setTextColor(getResources().getColor(R.color.black));
                         ed.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.FILL_PARENT,
                                 AbsListView.LayoutParams.WRAP_CONTENT));
                         lv1.addView(ed);
@@ -207,6 +209,16 @@ public class EventRegActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        if (id==android.R.id.home){
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

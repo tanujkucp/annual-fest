@@ -1,5 +1,6 @@
 package sahil.iiitk_foundationday_app.views;
 // Made by tanuj
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -37,7 +38,6 @@ import sahil.iiitk_foundationday_app.adapters.EventAdapter;
 public class EventsFragment extends Fragment {
     int club_number;
     Bundle bundle;
-    TextView club_name_field;
     List<String> image_names,names;
     protected RecyclerView mRecyclerView;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -46,6 +46,21 @@ public class EventsFragment extends Fragment {
     int version=0;
     String club_name;
     ProgressDialog dialog;
+    ClubNameInterface provider;
+
+    public interface ClubNameInterface{
+        public void setClubName(String x);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try{
+            provider=(ClubNameInterface) activity;
+        }catch (ClassCastException e){
+            Log.e("interface",e.getMessage());
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +69,6 @@ public class EventsFragment extends Fragment {
         bundle=getArguments();
         club_number=bundle.getInt("club_number");
         View view= inflater.inflate(R.layout.fragment_events, container, false);
-        club_name_field=view.findViewById(R.id.event_frag_clubname);
         mRecyclerView =view.findViewById(R.id.recyclerViewEvents);
         mLayoutManager =new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -194,7 +208,8 @@ public class EventsFragment extends Fragment {
 
     public void populateAdapter(){
         Log.e("file","populating adapter");
-        club_name_field.setText("~"+club_name+"~");
+        //set cluyb name in ACTIVITY
+        provider.setClubName(club_name);
        EventAdapter adapter=new EventAdapter(getActivity(),club_number,image_names,names);
        mRecyclerView.setAdapter(adapter);
        dialog.dismiss();

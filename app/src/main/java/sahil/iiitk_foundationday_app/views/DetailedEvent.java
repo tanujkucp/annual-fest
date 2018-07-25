@@ -13,6 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,8 +83,11 @@ public class DetailedEvent extends AppCompatActivity {
         //setting the views
         Toolbar toolbar = findViewById(R.id.event_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         collapsingToolbarLayout = findViewById(R.id.event_collapsing);
         collapsingToolbarLayout.setTitleEnabled(true);
+
         event_picture = findViewById(R.id.event_picture);
         bmb=findViewById(R.id.event_bmb);
         event_detail = findViewById(R.id.event_more_details);
@@ -137,6 +143,16 @@ public class DetailedEvent extends AppCompatActivity {
         });
         //start the tap targets
         startTapTargets();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        if (id==android.R.id.home){
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void initBmb(){

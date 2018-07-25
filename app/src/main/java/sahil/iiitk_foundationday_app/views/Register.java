@@ -167,6 +167,8 @@ public class Register extends AppCompatActivity
                 if(college.equals("Others")){
                     otherstrue = 1;
                     spin();
+                }else{
+                    //todo hide the other college name field
                 }
             }
             public void onNothingSelected(AdapterView<?> adapterView){
@@ -189,8 +191,8 @@ public class Register extends AppCompatActivity
         myEditText = new EditText(this);
         myEditText.setLayoutParams(mRparams);
         myEditText.setHint("Enter your College Name");
-        myEditText.setTextColor(ContextCompat.getColor(this, R.color.offwhite));
-        myEditText.setHintTextColor(ContextCompat.getColor(this, R.color.offwhite));
+        myEditText.setTextColor(ContextCompat.getColor(this, R.color.black));
+        myEditText.setHintTextColor(ContextCompat.getColor(this, R.color.grey700));
         ViewCompat.setBackgroundTintList(myEditText, ColorStateList.valueOf(Color.parseColor("#dddddd")));
         mRlayout.addView(myEditText);
     }

@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#90a4ae"
+        android:background="@color/grey200"
         app:itemTextColor="#000000"
         app:itemTextAppearance="@style/TextAppearance.AppCompat.Title"
         android:fitsSystemWindows="true"
@@ -36,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:background="#90a4ae"
-        android:fitsSystemWindows="true"
+        android:background="@color/grey300"
+
         app:headerLayout="@layout/nav_header_main2"
         />
 </android.support.v4.widget.DrawerLayout>
