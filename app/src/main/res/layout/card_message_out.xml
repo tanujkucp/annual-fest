@@ -13,7 +13,7 @@
         android:id="@+id/message_card"
         android:layoutDirection="ltr"
         android:minWidth="100dp"
-        app:cardBackgroundColor="@color/cornflower_blue_two"
+        app:cardBackgroundColor="@color/blue300"
         android:layout_height="wrap_content">
 
         <RelativeLayout

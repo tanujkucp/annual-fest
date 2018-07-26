@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey200"
     tools:context=".views.AdminActionsFragment">
     <!--
            Made by Tanuj
@@ -17,7 +18,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:background="#ffffff"
-        android:queryHint="Enter search text" />
+        android:queryHint="Enter search text"/>
 
     <Spinner
         android:id="@+id/admin_actions_spinner"
@@ -25,7 +26,7 @@
         android:layout_height="35dp"
         android:layout_marginRight="0dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/black"
         android:gravity="center"
         android:layout_alignParentRight="true"
         android:spinnerMode="dialog"
@@ -40,7 +41,7 @@
         android:gravity="center"
         android:text="All users"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="16sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/user_recycler"
@@ -50,7 +51,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="10dp" />
 
     <com.nightonke.boommenu.BoomMenuButton
         android:id="@+id/admin_bmb"

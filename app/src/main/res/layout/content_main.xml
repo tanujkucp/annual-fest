@@ -41,6 +41,8 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+
+
         </android.support.design.widget.CollapsingToolbarLayout>
 
 
@@ -62,7 +64,7 @@
             android:elevation="5dp"
             android:layout_width="match_parent"
             android:layout_height="43dp"
-            android:background="@color/grey200"
+            android:background="@color/grey300"
             app:tabIndicatorHeight="4dp"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/grey700"

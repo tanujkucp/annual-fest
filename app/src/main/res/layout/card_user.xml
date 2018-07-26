@@ -12,7 +12,7 @@
         app:cardCornerRadius="5dp"
         android:elevation="5dp"
         android:layout_marginBottom="2dp"
-        >
+        app:cardBackgroundColor="@color/white">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:text="Tanuj Mehta"
             android:textColor="#000000"
@@ -33,9 +34,10 @@
             android:layout_below="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="1dp"
             android:text="tanujm241@gmail.com"
             android:textColor="#212121"
             android:textSize="15sp" />
