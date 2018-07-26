@@ -5,10 +5,10 @@ package sahil.iiitk_foundationday_app.views;
 // and final touch to some parts and UI design  by Gaurav
 import android.Manifest;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -25,7 +25,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -44,8 +43,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.roger.match.library.MatchTextView;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -58,9 +55,7 @@ public class Login_Screen extends AppCompatActivity
     ImageView inb;
     EditText id;
     Button ff_login_button;
-    LinearLayout back;
     GoogleSignInClient mGoogleSignInClient;
-    private static final String TAG = "PhoneAuthActivity";
     SignInButton signInButton;
     Button phoneButton;
     EditText phoneField;
@@ -68,30 +63,20 @@ public class Login_Screen extends AppCompatActivity
     Button verify;
     String personName;
     String personEmail;
-    MatchTextView mtv;
     String personPhone;
-    AVLoadingIndicatorView avi;
+    ProgressDialog dialog;
     private static final String KEY_VERIFY_IN_PROGRESS = "key_verify_in_progress";
     private boolean mVerificationInProgress = false;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private boolean backPressedToExitOnce = false;
-    private Toast toast = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login__screen);
-
-
-        back=findViewById(R.id.login_back);
-        try{
-            back.setBackgroundResource(R.drawable.evstill);
-        }catch (OutOfMemoryError e){
-            Log.e("image","ImageError: "+e.getMessage());
-        }
 
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
@@ -113,18 +98,14 @@ public class Login_Screen extends AppCompatActivity
         ff_login_button=(Button) findViewById(R.id.button4);
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
         signInButton=(SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        signInButton.setSize(SignInButton.SIZE_WIDE);
         phoneButton=(Button)findViewById(R.id.phonebutton);
         phoneButton.setEnabled(true);
         signInButton.setEnabled(true);
         ff_login_button.setEnabled(true);
         reg_later=(Button) findViewById(R.id.reg_later);
-        avi = (AVLoadingIndicatorView) findViewById(R.id.AVLoadingIndicatorView);
-        mtv = (MatchTextView) findViewById(R.id.hello);
-        mtv.setText("FLAIR FIESTA 2K18");
-        mtv.setTextSize(35);
-        mtv.setTextColor(Color.WHITE);
-        mtv.setProgress(0.5f);
+        dialog=new ProgressDialog(Login_Screen.this);
+        dialog.setCancelable(false);
         signInButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -265,7 +246,8 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
-        avi.show();
+        dialog.setMessage("Checking mobile...");
+        dialog.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         DatabaseReference ref=db.getReference().child("Users");
         Query query=ref.orderByChild("phone").equalTo(a);
@@ -280,7 +262,7 @@ public class Login_Screen extends AppCompatActivity
                     Bundle extra = new Bundle();
                     extra.putString("phone",personPhone);
                     i.putExtras(extra);
-                    avi.hide();
+                    dialog.dismiss();
                     startActivity(i);
                     finish();
                 }
@@ -317,7 +299,7 @@ public class Login_Screen extends AppCompatActivity
                 //do appropriate action here when account with this phone number exists
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(i);
-                avi.hide();
+                dialog.dismiss();
                 finish();
             }
 
@@ -424,7 +406,8 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
-        avi.show();
+        dialog.setMessage("Checking email...");
+        dialog.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         DatabaseReference ref=db.getReference().child("Users");
         Query q=ref.orderByChild("email").equalTo(a);
@@ -440,7 +423,7 @@ public class Login_Screen extends AppCompatActivity
                     extra.putString("name",personName);
                     extra.putString("email",personEmail);
                     i.putExtras(extra);
-                    avi.hide();
+                    dialog.dismiss();
                     startActivity(i);
                     finish();
                 }
@@ -479,7 +462,7 @@ public class Login_Screen extends AppCompatActivity
 
                     Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
-                    avi.hide();
+                    dialog.dismiss();
                     finish();
             }
 
@@ -511,7 +494,8 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setEnabled(false);
         signInButton.setEnabled(false);
         ff_login_button.setEnabled(false);
-        avi.show();
+        dialog.setMessage("Checking FFID...");
+        dialog.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         DatabaseReference ref=db.getReference("Users");
         Query q=ref.orderByChild("user_id").equalTo(a);
@@ -522,7 +506,7 @@ public class Login_Screen extends AppCompatActivity
                     authFFIDwithEmail(a,b);
                 }else{
                     Toast.makeText(getApplicationContext(),"No account exists with given FFID!",Toast.LENGTH_SHORT).show();
-                    avi.hide();
+                    dialog.dismiss();
                 }
             }
             @Override
@@ -561,7 +545,7 @@ public class Login_Screen extends AppCompatActivity
                     editor.apply();
                     Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(i);
-                    avi.hide();
+                    dialog.dismiss();
                     finish();
                 }else{
                     Log.e("datasnapshot","email does not match with FFID!");
@@ -569,7 +553,7 @@ public class Login_Screen extends AppCompatActivity
                     phoneButton.setEnabled(true);
                     signInButton.setEnabled(true);
                     ff_login_button.setEnabled(true);
-                    avi.hide();
+                    dialog.dismiss();
                     Toast.makeText(getApplicationContext(),"FFID and email do not match!",Toast.LENGTH_SHORT).show();
                 }
 

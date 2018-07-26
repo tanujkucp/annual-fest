@@ -74,7 +74,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".views.UserActivityPage"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".views.ContactUs"
             android:screenOrientation="portrait"

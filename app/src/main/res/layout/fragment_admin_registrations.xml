@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#999999"
+    android:background="@color/grey_background"
     tools:context=".views.AdminPage">
     <!--
          Made by Tanuj
@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Club Name"
-        android:textColor="#ffffff"
+        android:textColor="@color/grey700"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
 
     <ListView
         android:id="@+id/admin_registrations"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/admin_spinner"
         android:layout_centerHorizontal="true"

@@ -10,8 +10,9 @@
                         -->
     <SearchView
         android:id="@+id/admin_actions_search"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="35dp"
+        android:layout_toLeftOf="@id/admin_actions_spinner"
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
@@ -20,13 +21,13 @@
 
     <Spinner
         android:id="@+id/admin_actions_spinner"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginRight="0dp"
         android:layout_marginTop="5dp"
-        android:layout_toRightOf="@id/admin_actions_search"
         android:backgroundTint="@color/white"
         android:gravity="center"
+        android:layout_alignParentRight="true"
         android:spinnerMode="dialog"
         android:textAlignment="center" />
 
