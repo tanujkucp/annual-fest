@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#999999"
+    android:background="@color/grey200"
     tools:context="sahil.iiitk_foundationday_app.views.AdminPage">
     <!--
          Made by tanuj
@@ -20,10 +20,10 @@
             android:id="@+id/admin_tabs"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="#ff9c5e"
+            android:background="@color/toolbar_grey"
             android:elevation="5dp"
             app:tabGravity="center"
-            app:tabIndicatorColor="#ffffff"
+            app:tabIndicatorColor="@color/white"
             app:tabTextColor="#ffffff"
             app:tabMode="scrollable">
 

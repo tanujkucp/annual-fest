@@ -5,7 +5,12 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/toolbar_grey</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/toolbar_grey</item>
+        <item name="colorAccent">@color/pink800</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">#031cd7</item>
+        <item name="colorAccent">#FF4081</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

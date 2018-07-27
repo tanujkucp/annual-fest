@@ -1,10 +1,12 @@
 package sahil.iiitk_foundationday_app.views;
 //Made by Tanuj
 import android.content.SharedPreferences;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +38,11 @@ public class UserActivityPage extends AppCompatActivity {
         setContentView(R.layout.activity_user_page);
         reg_recycler=findViewById(R.id.myactivity_reg_recycler);
         fav_recycler=findViewById(R.id.myactivity_fav_recycler);
+
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("My Profile");
+
         RecyclerView.LayoutManager manager=new LinearLayoutManager(this);
         reg_recycler.setLayoutManager(manager);
         RecyclerView.LayoutManager manager2=new LinearLayoutManager(this);
@@ -102,5 +109,15 @@ public class UserActivityPage extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        if (id==android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

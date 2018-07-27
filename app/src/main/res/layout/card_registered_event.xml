@@ -14,17 +14,20 @@
         android:layout_height="wrap_content"
         android:text="Vine_O_Mania"
         android:gravity="left"
-        android:textSize="20sp"
-        android:textColor="#000000"
+        android:textSize="17sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/grey900"
         android:ellipsize="end"
         />
     <TextView
         android:id="@+id/card_regEvent_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="2dp"
         android:layout_below="@id/card_regEvent_name"
         android:text="by Tanuj Mehta on 24 May"
-        android:textColor="#424242"
+        android:textColor="@color/grey800"
         android:textSize="15sp"
         android:gravity="left"
         />
@@ -32,6 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/card_regEvent_details"
-        android:background="#a0a0a0"
+        android:background="@color/grey500"
         />
 </RelativeLayout>

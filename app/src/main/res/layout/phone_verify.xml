@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/evstill"
     android:orientation="vertical"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:background="@color/grey_background"
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/offwhite"
+            android:textColorHint="@color/grey700"
             >
             <EditText
                 android:id="@+id/phoneField2"
@@ -37,10 +37,10 @@
                 android:layout_width="240dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:textColor="#dddddd"
+                android:textColor="@color/black"
                 android:focusable="true"
                 android:gravity="center"
-                android:textColorHint="#dddddd"
+                android:textColorHint="@color/grey700"
                 android:hint="10 Digit Phone Number"
                 android:inputType="phone"
                 />
@@ -55,8 +55,8 @@
             android:text="Verify by OTP"
             android:onClick="phoneLogin"
             android:textSize="16sp"
-            android:textColor="@color/offwhite"
-            android:background="@drawable/mybutton"
+            android:textColor="@color/grey800"
+            android:background="@drawable/my_activity_button"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>
