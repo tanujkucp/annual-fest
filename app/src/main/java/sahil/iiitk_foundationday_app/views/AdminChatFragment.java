@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,8 +71,6 @@ public class AdminChatFragment extends Fragment {
                      numNews.add(""+numNew);
                      lastMessages.add(lastMessage);
                      //setup dialog adapter
-//                    AdminChatAdapter adapter=new AdminChatAdapter(names,ids,lastMessages,numNews,getActivity());
-//                    recyclerView.setAdapter(adapter);
                     adapter.notifyItemInserted(names.size()-1);
 
                 }

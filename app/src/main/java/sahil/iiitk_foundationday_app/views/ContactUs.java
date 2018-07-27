@@ -58,20 +58,23 @@ public class ContactUs extends AppCompatActivity {
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        db= FirebaseDatabase.getInstance();
+        pref=getSharedPreferences("userInfo",MODE_PRIVATE);
+        ffid=pref.getString("FFID","");
+        user_name=pref.getString("name","Unknown");
+
         //determine if admin has opened this chat or a user
         isAdmin=getIntent().getBooleanExtra("isAdmin",false);
         if (isAdmin){
             adminSideFFID=getIntent().getStringExtra("ffid");
             adminSideName=getIntent().getStringExtra("name");
             actionBar.setTitle(adminSideName);
+            ffid=adminSideFFID;
         }else{
             actionBar.setTitle("Chat with Admin");
         }
 
-        db= FirebaseDatabase.getInstance();
-        pref=getSharedPreferences("userInfo",MODE_PRIVATE);
-        ffid=pref.getString("FFID","");
-        user_name=pref.getString("name","Unknown");
+
 
         RecyclerView.LayoutManager manager=new LinearLayoutManager(ContactUs.this);
         chatRecycler.setLayoutManager(manager);

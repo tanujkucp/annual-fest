@@ -63,6 +63,7 @@ public class Register extends AppCompatActivity
     public EditText name, college_id, department, phone, email, myEditText;
     public RadioGroup radioGroup, mocGroup;
     public RadioButton radioButton, mocButton;
+    RelativeLayout mRlayout;
     Spinner col,s;
     public int selectedId, mocID, otherstrue = 0;
     public String regphone = "^[6789]\\d{9}$";
@@ -98,6 +99,7 @@ public class Register extends AppCompatActivity
         reg_later=(TextView)findViewById(R.id.reg_later);
         col=findViewById(R.id.collegespin);
         s=findViewById(R.id.Year);
+        mRlayout = (RelativeLayout) findViewById(R.id.rel);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -165,10 +167,13 @@ public class Register extends AppCompatActivity
                 int pos = adapterView.getSelectedItemPosition();
                 college = arraySpinner2[pos];
                 if(college.equals("Others")){
-                    otherstrue = 1;
                     spin();
                 }else{
-                    //todo hide the other college name field
+                    if (otherstrue==1){
+                        mRlayout.setVisibility(View.GONE);
+                        // hide the other college name field
+                    }
+                    otherstrue=0;
                 }
             }
             public void onNothingSelected(AdapterView<?> adapterView){
@@ -184,7 +189,7 @@ public class Register extends AppCompatActivity
     }
 
     public void spin(){
-        RelativeLayout mRlayout = (RelativeLayout) findViewById(R.id.rel);
+        otherstrue = 1;
         mRlayout.setVisibility(View.VISIBLE);
 
         RelativeLayout.LayoutParams mRparams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -303,6 +308,7 @@ public class Register extends AppCompatActivity
             flag = 1;
         }
 
+        if (otherstrue==1) college=myEditText.getText().toString();
         if(college.length() == 0){
             Toast.makeText(this, "Enter appropriate College", Toast.LENGTH_SHORT).show();
             flag = 1;
@@ -345,17 +351,17 @@ public class Register extends AppCompatActivity
         database = FirebaseDatabase.getInstance();
         boolean value = validateInputs();
         if(value){
-            user.setName(name.getText().toString());
-            user.setDepartment(department.getText().toString());
-            user.setPhone(phone.getText().toString());
-            user.setEmail(email.getText().toString());
+            user.setName(name.getText().toString().trim());
+            user.setDepartment(department.getText().toString().trim());
+            user.setPhone(phone.getText().toString().trim());
+            user.setEmail(email.getText().toString().trim());
             if(otherstrue == 1){
-                user.setCollege(myEditText.getText().toString());
+                user.setCollege(myEditText.getText().toString().trim());
             }
             else{
                 user.setCollege(college);
             }
-            user.setCollegeid(college_id.getText().toString());
+            user.setCollegeid(college_id.getText().toString().trim());
             user.setGender(gender);
             user.setYear(year);
             user.setMos(mos);
