@@ -32,10 +32,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     User currentUser=users.get(getAdapterPosition());
                     AlertDialog.Builder builder=new AlertDialog.Builder(context);
                     builder.setTitle(""+currentUser.getName());
-                    String details=""+currentUser.getUser_id()+", "+currentUser.getCollegeid();
-                    details+="\nContact: "+currentUser.getEmail()+", "+currentUser.getPhone();
-                    details+="\n"+currentUser.getDepartment()+", "+currentUser.getCollege();
-                    details+="\n"+currentUser.getGender()+", "+currentUser.getYear()+" Year, "+currentUser.getMos();
+                    String details=""+currentUser.getUser_id()+"\n"+currentUser.getCollegeid();
+                    details+="\n"+currentUser.getEmail()+"\nContact: "+currentUser.getPhone();
+                    details+="\n"+currentUser.getDepartment()+"\n"+currentUser.getCollege();
+                    details+="\n"+currentUser.getGender()+"\n"+currentUser.getYear()+" Year, "+currentUser.getMos();
                     details+="\nQuiz: Correct= "+currentUser.getQuiz_correct()+", Lives Left= "+currentUser.getQuiz_lives();
 
                     builder.setMessage(details);
@@ -76,8 +76,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder viewHolder, final int pos) {
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getNameView().setText(users.get(pos).getUser_id()+" | "+users.get(pos).getName());
-        viewHolder.getContactView().setText(""+users.get(pos).getEmail()+", "+users.get(pos).getPhone());
+        viewHolder.getNameView().setText(users.get(pos).getUser_id()+" | " +
+                ""+users.get(pos).getName());
+        viewHolder.getContactView().setText(""+users.get(pos).getEmail());
     }
 
 

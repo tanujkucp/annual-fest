@@ -43,15 +43,35 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/user_recycler"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/user_recycler_label"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp" />
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="@color/grey_background"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/reg_now_border"
+            >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/user_recycler"
+            android:background="@color/grey_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
 
     <com.nightonke.boommenu.BoomMenuButton
         android:id="@+id/admin_bmb"

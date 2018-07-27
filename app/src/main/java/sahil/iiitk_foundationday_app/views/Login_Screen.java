@@ -104,7 +104,7 @@ public class Login_Screen extends AppCompatActivity
         signInButton.setEnabled(true);
         ff_login_button.setEnabled(true);
         reg_later=(Button) findViewById(R.id.reg_later);
-        dialog=new ProgressDialog(Login_Screen.this);
+        dialog=new ProgressDialog(Login_Screen.this,R.style.AlertDialogCustom);
         dialog.setCancelable(false);
         signInButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -158,7 +158,7 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setVisibility(View.GONE);
         ff_login_button.setVisibility(View.GONE);
         signInButton.setVisibility(View.GONE);
-        final Dialog myDialog =  new Dialog(this);
+        final Dialog myDialog =  new Dialog(this,R.style.AppTheme_NoActionBar);
         myDialog.setContentView(R.layout.id_k);
         myDialog.setCancelable(true);
         myDialog.setTitle("FFID");
@@ -191,7 +191,7 @@ public class Login_Screen extends AppCompatActivity
         phoneButton.setVisibility(View.GONE);
         ff_login_button.setVisibility(View.GONE);
         signInButton.setVisibility(View.GONE);
-        final Dialog myDialog =  new Dialog(this);
+        final Dialog myDialog =  new Dialog(this,R.style.AppTheme_NoActionBar);
         myDialog.setContentView(R.layout.phone_verify);
         myDialog.setCancelable(true);
         myDialog.setTitle("VERIFY PHONE NUMBER");
@@ -248,6 +248,7 @@ public class Login_Screen extends AppCompatActivity
         ff_login_button.setEnabled(false);
         dialog.setMessage("Checking mobile...");
         dialog.show();
+
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         DatabaseReference ref=db.getReference().child("Users");
         Query query=ref.orderByChild("phone").equalTo(a);

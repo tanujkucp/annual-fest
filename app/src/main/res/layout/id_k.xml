@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/grey_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -29,9 +30,9 @@
             android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/offwhite"
+            android:textColorHint="@color/grey700"
             android:fadingEdge="vertical"
-            android:background="#111111"
+            android:background="@color/grey_background"
             >
             <EditText
                 android:id="@+id/ffid1"
@@ -39,10 +40,10 @@
                 android:layout_width="240dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:textColor="#dddddd"
+                android:textColor="@color/black"
                 android:focusable="true"
                 android:gravity="center"
-                android:textColorHint="#dddddd"
+                android:textColorHint="@color/grey700"
                 android:hint="FFID"
                 android:inputType="text"
                 />
@@ -53,9 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:background="#111111"
+            android:background="@color/grey_background"
             android:layout_marginTop="5dp"
-            android:textColorHint="@color/offwhite"
+            android:textColorHint="@color/grey700"
             >
             <EditText
                 android:id="@+id/ffid_email"
@@ -63,26 +64,26 @@
                 android:layout_width="240dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:textColor="#dddddd"
+                android:textColor="@color/black"
                 android:focusable="true"
                 android:gravity="center"
 
-                android:textColorHint="#dddddd"
+                android:textColorHint="@color/grey700"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 />
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:layout_marginTop="10dp"
-            android:layout_width="100dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="150dp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:id="@+id/btnFF1"
             android:text="PROCEED"
             android:background="@drawable/my_activity_button"
             android:textSize="16sp"
-            android:textColor="@color/offwhite"
+            android:textColor="@color/grey800"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
