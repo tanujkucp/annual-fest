@@ -24,7 +24,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -100,12 +99,11 @@ public class Login_Screen extends AppCompatActivity
         signInButton=(SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
         phoneButton=(Button)findViewById(R.id.phonebutton);
-        phoneButton.setEnabled(true);
-        signInButton.setEnabled(true);
-        ff_login_button.setEnabled(true);
         reg_later=(Button) findViewById(R.id.reg_later);
+
         dialog=new ProgressDialog(Login_Screen.this,R.style.AlertDialogCustom);
         dialog.setCancelable(false);
+
         signInButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -120,11 +118,7 @@ public class Login_Screen extends AppCompatActivity
                     @Override
                     public void onClick(View v)
                     {
-                        phoneButton.setEnabled(false);
                         callPhoneLogInDialog();
-                        phoneButton.setVisibility(View.VISIBLE);
-                        ff_login_button.setVisibility(View.VISIBLE);
-                        signInButton.setVisibility(View.VISIBLE);
                     }
                 }
         );
@@ -134,11 +128,7 @@ public class Login_Screen extends AppCompatActivity
                     @Override
                     public void onClick(View v)
                     {
-                        ff_login_button.setEnabled(false);
                         callLogInDialog();
-                        phoneButton.setVisibility(View.VISIBLE);
-                        ff_login_button.setVisibility(View.VISIBLE);
-                        signInButton.setVisibility(View.VISIBLE);
                     }
                 }
         );
@@ -155,9 +145,6 @@ public class Login_Screen extends AppCompatActivity
     }
     private void callLogInDialog()
     {
-        phoneButton.setVisibility(View.GONE);
-        ff_login_button.setVisibility(View.GONE);
-        signInButton.setVisibility(View.GONE);
         final Dialog myDialog =  new Dialog(this,R.style.AppTheme_NoActionBar);
         myDialog.setContentView(R.layout.id_k);
         myDialog.setCancelable(true);
@@ -188,13 +175,10 @@ public class Login_Screen extends AppCompatActivity
 
     private void callPhoneLogInDialog()
     {
-        phoneButton.setVisibility(View.GONE);
-        ff_login_button.setVisibility(View.GONE);
-        signInButton.setVisibility(View.GONE);
         final Dialog myDialog =  new Dialog(this,R.style.AppTheme_NoActionBar);
         myDialog.setContentView(R.layout.phone_verify);
         myDialog.setCancelable(true);
-        myDialog.setTitle("VERIFY PHONE NUMBER");
+        myDialog.setTitle("Verify phone number");
         verify = (Button) myDialog.findViewById(R.id.phoneButton2);
         phoneField = (EditText) myDialog.findViewById(R.id.phoneField2);
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -205,14 +189,15 @@ public class Login_Screen extends AppCompatActivity
                 Toast.makeText(getApplicationContext(),"OTP Verified",Toast.LENGTH_SHORT).show();
                 checkPhone(personPhone);
                 myDialog.dismiss();    //so that user cannot go to login screen by pressing back button
-
             }
-
             @Override
             public void onVerificationFailed(FirebaseException e) {
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
                 Toast.makeText(getApplicationContext(),"Verification Failed:\n "+e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                verify.setEnabled(true);
+                verify.setText("Verify");
+                phoneField.setEnabled(true);
             }
 
             @Override
@@ -224,7 +209,7 @@ public class Login_Screen extends AppCompatActivity
                 // Save verification ID and resending token so we can use them later
                 mVerificationId = verificationId;
                 mResendToken = token;
-                verify.setEnabled(false);
+                //verify.setEnabled(false);
                 Toast.makeText(getApplicationContext(),"OTP sent",Toast.LENGTH_SHORT).show();
             }
 
@@ -234,6 +219,7 @@ public class Login_Screen extends AppCompatActivity
                 Toast.makeText(getApplicationContext(),"OTP detection timeout. Try resending OTP",Toast.LENGTH_SHORT).show();
                 verify.setText("Resend OTP");
                 verify.setEnabled(true);
+                phoneField.setEnabled(true);
             }
         };
         myDialog.show();
@@ -243,12 +229,8 @@ public class Login_Screen extends AppCompatActivity
 //firebase. Appropriate action to be done inside if-else statements to get required usage.
 //this will be used on the onCreate() method of login screen
     public void checkPhone(final String a){
-        phoneButton.setEnabled(false);
-        signInButton.setEnabled(false);
-        ff_login_button.setEnabled(false);
         dialog.setMessage("Checking mobile...");
         dialog.show();
-
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         DatabaseReference ref=db.getReference().child("Users");
         Query query=ref.orderByChild("phone").equalTo(a);
@@ -303,25 +285,17 @@ public class Login_Screen extends AppCompatActivity
                 dialog.dismiss();
                 finish();
             }
-
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
-
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
@@ -357,6 +331,8 @@ public class Login_Screen extends AppCompatActivity
         if (validatePhoneNumber(personPhone)){
             startPhoneNumberVerification(personPhone);
             verify.setText("Waiting for OTP ...");
+            verify.setEnabled(false);
+            phoneField.setEnabled(false);
         }
     }
     private void startPhoneNumberVerification(String phoneNumber) {
@@ -396,7 +372,7 @@ public class Login_Screen extends AppCompatActivity
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Toast.makeText(this, "Oops! Error... try again! ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error code: "+e.getStatusCode(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -404,9 +380,6 @@ public class Login_Screen extends AppCompatActivity
 //firebase. Appropriate action to be done inside if-else statements to get required usage.
 //this will be used on the onCreate() method of login screen
     public void checkEmail(final String a){
-        phoneButton.setEnabled(false);
-        signInButton.setEnabled(false);
-        ff_login_button.setEnabled(false);
         dialog.setMessage("Checking email...");
         dialog.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
@@ -466,22 +439,15 @@ public class Login_Screen extends AppCompatActivity
                     dialog.dismiss();
                     finish();
             }
-
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
-
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
@@ -492,9 +458,6 @@ public class Login_Screen extends AppCompatActivity
 //firebase. Appropriate action to be done inside if-else statements to get required usage.
 //this will be used on the onCreate() method of login screen
     public void checkFFID(final String a,final String b){
-        phoneButton.setEnabled(false);
-        signInButton.setEnabled(false);
-        ff_login_button.setEnabled(false);
         dialog.setMessage("Checking FFID...");
         dialog.show();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
@@ -557,29 +520,19 @@ public class Login_Screen extends AppCompatActivity
                     dialog.dismiss();
                     Toast.makeText(getApplicationContext(),"FFID and email do not match!",Toast.LENGTH_SHORT).show();
                 }
-
             }
-
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
-
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
-
         });
     }
 
@@ -591,7 +544,6 @@ public class Login_Screen extends AppCompatActivity
             this.backPressedToExitOnce = true;
             Toast.makeText(this,"Press again to exit!",Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(new Runnable() {
-
                 @Override
                 public void run() {
                     backPressedToExitOnce = false;

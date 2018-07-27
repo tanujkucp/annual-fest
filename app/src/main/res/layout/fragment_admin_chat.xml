@@ -12,7 +12,6 @@
         android:id="@+id/admin_chat_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         />
 
 </RelativeLayout>

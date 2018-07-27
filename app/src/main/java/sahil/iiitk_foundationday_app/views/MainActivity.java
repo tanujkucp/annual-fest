@@ -217,15 +217,19 @@ public class MainActivity extends AppCompatActivity
         //showing user's FFID if it exists
         nav_ffid = navigationView.getHeaderView(0).findViewById(R.id.nav_ffid);
         gotoMyactivity = navigationView.getHeaderView(0).findViewById(R.id.nav_myactivity_button);
-        SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
-        if (!pref.getString("FFID", "").isEmpty()) {
-            nav_ffid.setText("Your FFID is " + pref.getString("FFID", ""));
+        if (!sharedPreferences.getString("FFID", "").isEmpty()) {
+            nav_ffid.setText("Your FFID is " + sharedPreferences.getString("FFID", ""));
         }
         gotoMyactivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, UserActivityPage.class);
-                MainActivity.this.startActivity(intent);
+                if (sharedPreferences.getString("FFID", "").isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please register first!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(MainActivity.this, UserActivityPage.class);
+                    MainActivity.this.startActivity(intent);
+                }
+
             }
         });
 
@@ -409,7 +413,6 @@ public class MainActivity extends AppCompatActivity
                 super.onBackPressed();
             } else {
                 this.backPressedToExitOnce = true;
-                //todo use snackbar here
                 Toast.makeText(getApplicationContext(), "Press again to exit", Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -454,7 +457,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_queries) {
             //check if the user has an account in the app or not
             if (sharedPreferences.getString("FFID", "").isEmpty()) {
-                Toast.makeText(this, "Please register to chat!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please register first to chat!", Toast.LENGTH_SHORT).show();
             }else{
                 Intent intent=new Intent(this,ContactUs.class);
                 intent.putExtra("isAdmin",false);
