@@ -24,7 +24,7 @@
             android:padding="2dp"
             android:textColor="@color/grey900"
             android:layout_centerHorizontal="true"
-            android:text="    Verification Done!!!\nExplore with Guest login!"
+            android:text="    Verification Done!\nExplore with Guest login."
             android:textSize="17sp"/>
         <Button
             android:id="@+id/reg_later"
