@@ -508,7 +508,7 @@ public class DetailedEvent extends AppCompatActivity {
     }
 
     public void startTapTargets(){
-        if (sequencePref.getBoolean("seq_reg",false)) return;
+        if (sequencePref.getBoolean("seq_details",false)) return;
 
         TapTargetView.showFor(DetailedEvent.this,
                 TapTarget.forView(bmb,"Register here","Click here to register for the event and other" +
@@ -523,12 +523,11 @@ public class DetailedEvent extends AppCompatActivity {
                         super.onTargetClick(view);
                         //save in preferernces so that this is only shown when you open app first time
                         SharedPreferences.Editor editor=sequencePref.edit();
-                        editor.putBoolean("seq_reg",true);
+                        editor.putBoolean("seq_details",true);
                         editor.apply();
                     }
                 }
                 );
     }
-
 
 }

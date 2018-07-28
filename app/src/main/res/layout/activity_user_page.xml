@@ -10,9 +10,18 @@
     <!--
              Made by tanuj
    -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/profile_toolbar"
+        android:layout_height="53dp"
+        android:layout_width="match_parent"
+        android:elevation="4dp"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:titleTextColor="@color/white"
+        android:background="@color/toolbar_grey" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:layout_below="@id/profile_toolbar"
         android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"

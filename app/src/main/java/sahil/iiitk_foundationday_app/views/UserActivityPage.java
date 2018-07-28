@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -41,7 +45,7 @@ import sahil.iiitk_foundationday_app.model.User;
 public class UserActivityPage extends AppCompatActivity {
 
     String ffid,selectedYear;
-    SharedPreferences pref,favourites;
+    SharedPreferences pref,favourites,sequencePref;
     FirebaseDatabase db;
     List<SingleEventPersonal> listOfRegistrations;
     RecyclerView reg_recycler,fav_recycler;
@@ -50,10 +54,12 @@ public class UserActivityPage extends AppCompatActivity {
     };
     ProgressDialog dialog;
     View profile;
+    Toolbar toolbar;
+    int updateId=2;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0,2,0,"Update Year").setIcon(R.drawable.ic_update).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        menu.add(0,updateId,0,"Update Year").setIcon(R.drawable.ic_update).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return true;
     }
 
@@ -64,6 +70,9 @@ public class UserActivityPage extends AppCompatActivity {
         reg_recycler=findViewById(R.id.myactivity_reg_recycler);
         fav_recycler=findViewById(R.id.myactivity_fav_recycler);
         profile=findViewById(R.id.include_profile);
+
+        toolbar=findViewById(R.id.profile_toolbar);
+        setSupportActionBar(toolbar);
 
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -78,6 +87,7 @@ public class UserActivityPage extends AppCompatActivity {
         pref=getSharedPreferences("userInfo",MODE_PRIVATE);
         ffid=pref.getString("FFID","");
         favourites=getSharedPreferences("fav"+ffid,MODE_PRIVATE);
+        sequencePref=getSharedPreferences("sequence",MODE_PRIVATE);
         dialog=new ProgressDialog(UserActivityPage.this,R.style.AlertDialogCustom);
         dialog.setCancelable(false);
         //show user profile details
@@ -88,6 +98,13 @@ public class UserActivityPage extends AppCompatActivity {
 
         //get user's favourite events
         getFavourites();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startTapTargets();
+            }
+        },1000);
     }
 
     public void showProfile(){
@@ -243,4 +260,29 @@ public class UserActivityPage extends AppCompatActivity {
             }
         });
     }
+
+    public void startTapTargets(){
+        if (sequencePref.getBoolean("seq_profile",false)) return;
+
+        TapTargetView.showFor(UserActivityPage.this,
+                TapTarget.forToolbarMenuItem(toolbar,updateId,"Change Year",
+                        "Click here to change year of college.")
+                        .transparentTarget(false).cancelable(false).outerCircleColor(R.color.pink800)
+                        .outerCircleAlpha(0.7f)
+                        .descriptionTextAlpha(1f)
+                        .titleTextSize(25)
+                        .descriptionTextColor(R.color.white)
+                ,new TapTargetView.Listener(){
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetClick(view);
+                        //save in preferernces so that this is only shown when you open app first time
+                        SharedPreferences.Editor editor=sequencePref.edit();
+                        editor.putBoolean("seq_profile",true);
+                        editor.apply();
+                    }
+                }
+        );
+    }
+
 }

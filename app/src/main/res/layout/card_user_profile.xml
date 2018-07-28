@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_profile_icon"
                 android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
                 android:textSize="24dp"
                 android:textColor="@color/grey900" />
             <TextView

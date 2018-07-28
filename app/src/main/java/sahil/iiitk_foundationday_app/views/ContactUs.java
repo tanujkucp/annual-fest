@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +17,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,7 +46,7 @@ public class ContactUs extends AppCompatActivity {
     EditText textBox;
     ProgressBar progressBar;
     FirebaseDatabase db;
-    SharedPreferences pref;
+    SharedPreferences pref,sequencePref;
     String ffid,user_name,adminSideName="",adminSideFFID;
     ChatsList listToUpdate;
     List<Msg> messages;
@@ -56,6 +56,8 @@ public class ContactUs extends AppCompatActivity {
     long numOfNew=0;
     Boolean isAdmin=false;
     ProgressDialog dialog;
+    int infoID=2;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +69,14 @@ public class ContactUs extends AppCompatActivity {
         dialog=new ProgressDialog(ContactUs.this,R.style.AlertDialogCustom);
         dialog.setCancelable(false);
 
+        toolbar=findViewById(R.id.chat_toolbar);
+        setSupportActionBar(toolbar);
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         db= FirebaseDatabase.getInstance();
         pref=getSharedPreferences("userInfo",MODE_PRIVATE);
+        sequencePref=getSharedPreferences("sequence",MODE_PRIVATE);
         ffid=pref.getString("FFID","");
         user_name=pref.getString("name","Unknown");
 
@@ -89,6 +94,13 @@ public class ContactUs extends AppCompatActivity {
         chatRecycler.setLayoutManager(manager);
 
         checkIfChatBoxExists();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startTapTargets();
+            }
+        },1000);
     }
 
     public void checkIfChatBoxExists(){
@@ -211,7 +223,7 @@ public class ContactUs extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (isAdmin) menu.add(0,1,0,"User Info").setIcon(R.drawable.ic_info).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        if (isAdmin) menu.add(0,infoID,0,"User Info").setIcon(R.drawable.ic_info).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -221,7 +233,7 @@ public class ContactUs extends AppCompatActivity {
         if (id==android.R.id.home){
             this.finish();
             return true;
-        }else if (id==1) showUserDetails();
+        }else if (id==infoID) showUserDetails();
         return super.onOptionsItemSelected(item);
     }
 
@@ -268,4 +280,31 @@ public class ContactUs extends AppCompatActivity {
             }
         });
     }
+
+    public void startTapTargets(){
+        if (!isAdmin) return;
+        if (sequencePref.getBoolean("seq_chat",false)) return;
+
+        TapTargetView.showFor(ContactUs.this,
+                TapTarget.forToolbarMenuItem(toolbar,infoID,"User Info",
+                        "Click here to see full profile of user you are chatting with.")
+                        .transparentTarget(false)
+                        .cancelable(false).outerCircleColor(R.color.pink800)
+                        .outerCircleAlpha(0.7f)
+                        .descriptionTextAlpha(1f)
+                        .titleTextSize(25)
+                        .descriptionTextColor(R.color.white)
+                ,new TapTargetView.Listener(){
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetClick(view);
+                        //save in preferernces so that this is only shown when you open app first time
+                        SharedPreferences.Editor editor=sequencePref.edit();
+                        editor.putBoolean("seq_chat",true);
+                        editor.apply();
+                    }
+                }
+        );
+    }
+
 }

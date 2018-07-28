@@ -418,7 +418,7 @@ public class AdminActionsFragment extends Fragment {
         if (sequencePref.getBoolean("seq_admin_actions",false)) return;
 
         List<TapTarget> targets=new ArrayList<>();
-        //todo customise these targets with different colors and styles
+        // customise these targets with different colors and styles
         targets.add(TapTarget.forView(searchView,"Search here!"
                 ,"Type text here to search specific users.")
                 .outerCircleColor(R.color.blue800)

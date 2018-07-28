@@ -937,7 +937,7 @@ public class MainActivity extends AppCompatActivity
         if (sequencePref.getBoolean("seq_home",false)) return;
 
         List<TapTarget> targets=new ArrayList<>();
-        //todo customise these targets with different colors and styles
+        // customise these targets with different colors and styles
         targets.add(TapTarget.forToolbarNavigationIcon(toolbar,"Explore Menu"
                 ,"See features like Your profile, Chatforum, Venue ...")
                 .outerCircleColor(R.color.orange)

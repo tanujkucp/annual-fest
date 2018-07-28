@@ -1,11 +1,10 @@
 package sahil.iiitk_foundationday_app.views;
 // Made by Tanuj
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -55,7 +56,7 @@ public class EventRegActivity extends AppCompatActivity {
     List<String> IDs = new ArrayList<>();
     EventReg registration = new EventReg();
     FirebaseDatabase db;
-    SharedPreferences savedData;
+    SharedPreferences savedData,sequencePref;
     ProgressDialog dialog;
     ActionBar bar;
     Boolean isRegistrationProcessRunning=false;
@@ -70,6 +71,7 @@ public class EventRegActivity extends AppCompatActivity {
 
         db = FirebaseDatabase.getInstance();
         savedData = getSharedPreferences("userInfo", MODE_PRIVATE);
+        sequencePref=getSharedPreferences("sequence",MODE_PRIVATE);
 
         dialog=new ProgressDialog(this,R.style.AlertDialogCustom);
         dialog.setCancelable(false);
@@ -116,6 +118,7 @@ public class EventRegActivity extends AppCompatActivity {
                     lv1.removeAllViews();
                     allEds.clear();
                     InputFilter[] filters = new InputFilter[1];
+                    //todo change this input length if needed
                     filters[0] = new InputFilter.LengthFilter(6); //Filter to 6 characters
                     for (int t = 0; t < (i + min); t++) {
                         ed = new EditText(getApplicationContext());
@@ -164,53 +167,31 @@ public class EventRegActivity extends AppCompatActivity {
                         flag = 1;
                     }
                 }
-
                 if (flag == 0) {
                     btnl.setEnabled(false);
                     //check if entered FFIDs have the registered user's FFID or not
                     //so that user can't register for other people unless he is in the team
                     if (IDs.contains(savedData.getString("FFID", ""))) {
                         Log.e("registration", "Going to check FFIDs");
-                        String college_name = savedData.getString("college", "");
-                        if (college_name.equals("IIIT KOTA") || college_name.equals("MNIT JAIPUR")) {
                             checkFFID(IDs.get(0));
-                        } else {
-                            DatabaseReference databaseReference = db.getReference("Users");
-                            Query query = databaseReference.orderByChild("user_id").equalTo(IDs.get(0));
-                            query.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.exists()) {
-                                        Intent i = new Intent(Intent.ACTION_VIEW);
-                                        if (max == 1) {
-                                            i.setData(Uri.parse("https://www.townscript.com/e/solo-event-flairfiesta-iiitk-334121/"));
-                                        } else {
-                                            i.setData(Uri.parse("https://www.townscript.com/e/team-event-flairfiesta-iiitk-334121/"));
-                                        }
-                                        EventRegActivity.this.startActivity(i);
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Provided FFID does not exist!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-                                }
-                            });
-
-                        }
                     } else {
                         btnl.setEnabled(true);
-                        Log.e("registration", "User's FFID is not present in the list!");
+                        Log.e("registration", "User's personal FFID is not present in the list!");
                         Toast.makeText(getApplicationContext(), "You can't register for others unless you have a team!", Toast.LENGTH_LONG).show();
                     }
-
                 } else {
                     btnl.setEnabled(true);
                     IDs.clear();
                 }
-
             }
         });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startTapTargets();
+            }
+        },1000);
     }
 
     @Override
@@ -385,7 +366,6 @@ public class EventRegActivity extends AppCompatActivity {
         //add this event to all the team members' personal registered events list
         addToRegisteredEvents();
 
-        //todo it now goes back to home activity but i want to display a nice message to user of confirmation with details
         this.finish();
     }
 
@@ -398,9 +378,10 @@ public class EventRegActivity extends AppCompatActivity {
         for (int i = 0; i < ffids.size(); i++) {
             body = body + "\n" + (i + 1) + ". " + ffids.get(i);
         }
-        body = body + "\n\nWe at Organzing Team of Flair Fiesta 2k18 will be glad to have you with us on 23Mar 18 and 24Mar 18."
+        body = body + "\n\nWe at Organzing Team of Flair Fiesta '19 will be glad to have you with us on 23Mar 18 and 24Mar 18."
                 + "\n\nThanks and Regards"
                 + "\nAdmin";
+        //todo update this email text here
         final String recepient = email;
         SharedPreferences email_pref=getSharedPreferences("email_account",MODE_PRIVATE);
         final String username=email_pref.getString("email_id","error"),
@@ -550,6 +531,51 @@ public class EventRegActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    public void startTapTargets(){
+        if (sequencePref.getBoolean("seq_reg",false)) return;
+
+        List<TapTarget> targets=new ArrayList<>();
+
+        targets.add(TapTarget.forView(findViewById(R.id.s1),"Team Size"
+                ,"Select team size to enter more user FFIDs.").id(0)
+                .cancelable(false)
+                .outerCircleColor(R.color.green)
+                .outerCircleAlpha(0.7f)
+                .titleTextSize(25)
+                .descriptionTextAlpha(1f)
+                .descriptionTextColor(R.color.white)
+                .transparentTarget(true));
+
+        targets.add(TapTarget.forView(allEds.get(0),"Your FFID"
+                ,"This is your personal FFID. Enter your friends' FFIDs below to make a team.").id(1)
+                .cancelable(false)
+                .outerCircleColor(R.color.green)
+                .outerCircleAlpha(0.7f)
+                .titleTextSize(25)
+                .descriptionTextAlpha(1f)
+                .descriptionTextColor(R.color.white)
+                .transparentTarget(true));
+
+        TapTargetSequence sequence=new TapTargetSequence(EventRegActivity.this)
+                .targets(targets)
+                .listener(new TapTargetSequence.Listener() {
+                    @Override
+                    public void onSequenceFinish() {
+                        //save in preferernces so that this is only shown when you open app first time
+                        SharedPreferences.Editor editor=sequencePref.edit();
+                        editor.putBoolean("seq_reg",true);
+                        editor.apply();
+                    }
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                    }
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+                    }
+                });
+        sequence.start();
     }
 
 }
