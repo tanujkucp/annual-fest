@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 
 public class AdminPage extends AppCompatActivity
         implements AdminRegistrationsFragment.EventNamesInterface,AdminInsightsFragment.EventsNamesInterface2
@@ -152,7 +153,7 @@ public class AdminPage extends AppCompatActivity
             }catch (IOException e){
                 Log.e("file",""+e.getMessage());
                 Log.e("file","An error occurred. have to download.");
-                Toast.makeText(this, "An error occurred in fetching details!", Toast.LENGTH_SHORT).show();
+                new MyToast(this, "An error occurred in fetching details!",false).show();
                 //some error occurred in file , download data again
             }
         }catch (FileNotFoundException e){
@@ -169,7 +170,7 @@ public class AdminPage extends AppCompatActivity
             Log.e("file","Primary file parsing done.");
         }catch(JSONException e){
             Log.e("file",e.getMessage());
-            Toast.makeText(this, "An error occurred! Please Reload page.", Toast.LENGTH_SHORT).show();
+            new MyToast(this, "An error occurred! Please Reload page.",false).show();
         }
     }
 

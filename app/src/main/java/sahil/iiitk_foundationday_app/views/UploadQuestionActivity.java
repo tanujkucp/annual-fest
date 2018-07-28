@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 import sahil.iiitk_foundationday_app.model.Question;
 
 public class UploadQuestionActivity extends AppCompatActivity {
@@ -107,7 +108,7 @@ public class UploadQuestionActivity extends AppCompatActivity {
         upload_question.setId(id);
         DatabaseReference mRef = database.getReference().child("New_Questions");
         mRef.push().setValue(upload_question);
-        Toast.makeText(this, "Question push Successfull!", Toast.LENGTH_SHORT).show();
+        new MyToast(this, "Question push Successfull!").show();
         question.setText("");
         option1.setText("");
         option2.setText("");

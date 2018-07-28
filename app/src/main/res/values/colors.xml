@@ -64,6 +64,9 @@
     <color name="blue900">#0D47A1</color>
     <color name="blue100">#BBDEFB</color>
 
+    <color name="green600">#43A047</color>
+    <color name="red500">#F44336</color>
+
     <color name="pink800">#D81B60</color>
     <color name="pink500">#EC407A</color>
     <color name="orange">#F57C00</color>

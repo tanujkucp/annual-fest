@@ -34,6 +34,7 @@ import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
 import sahil.iiitk_foundationday_app.adapters.EventAdapter;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 
 public class EventsFragment extends Fragment {
     int club_number;
@@ -107,7 +108,7 @@ public class EventsFragment extends Fragment {
             public void onFailure(@NonNull Exception e) {
                 Log.e("file","File download failed!\nError: "+e.getMessage());
                 dialog.dismiss();
-                Toast.makeText(getActivity(), "Network error!", Toast.LENGTH_SHORT).show();
+                new MyToast(getActivity(), "Network error!",false).show();
             }
         });
     }
@@ -134,7 +135,7 @@ public class EventsFragment extends Fragment {
                 Log.e("file",""+e.getMessage());
                 dialog.cancel();
                 Log.e("file","An error occurred. have to download.");
-                Toast.makeText(getActivity(), "An error occurred!", Toast.LENGTH_SHORT).show();
+                new MyToast(getActivity(), "An error occurred!",false).show();
                 //some error occurred in file , download data again
                 getClubData(false);
             }
@@ -160,7 +161,7 @@ public class EventsFragment extends Fragment {
                             stream.close();
                             Log.e("file","Club file updated.\nShowing new data to user");
                             getDataFromJSONObject(object);
-                            Toast.makeText(getActivity(), "CLub details have been updated!", Toast.LENGTH_LONG).show();
+                            new MyToast(getActivity(), "CLub details have been updated!", Toast.LENGTH_LONG).show();
                         }catch (IOException e){
                             Log.e("file","During file update :\n"+e.getMessage());
                         }
@@ -175,7 +176,7 @@ public class EventsFragment extends Fragment {
         }catch(JSONException e){
             Log.e("file",e.getMessage());
             dialog.dismiss();
-            Toast.makeText(getActivity(), "An error occurred! Please Reload page.", Toast.LENGTH_SHORT).show();
+            new MyToast(getActivity(), "An error occurred! Please Reload page.",false).show();
         }
     }
 
@@ -201,7 +202,7 @@ public class EventsFragment extends Fragment {
         }catch (JSONException e){
             Log.e("file",e.getMessage());
             dialog.dismiss();
-            Toast.makeText(getActivity(), "An error occurred! Please Reload page.", Toast.LENGTH_SHORT).show();
+            new MyToast(getActivity(), "An error occurred! Please Reload page.",false).show();
 
         }
     }

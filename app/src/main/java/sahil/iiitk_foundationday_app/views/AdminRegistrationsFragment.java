@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -86,7 +87,7 @@ public class AdminRegistrationsFragment extends Fragment {
 
         event_names=provider.getEventNames(club_number);
         if (event_names==null){
-                Toast.makeText(getActivity(), "Reload this page after connecting to internet.", Toast.LENGTH_LONG).show();
+            new MyToast(getActivity(), "Reload this page after connecting to internet.", Toast.LENGTH_LONG,false).show();
                 getActivity().finish();
         }
         dialog=new ProgressDialog(getActivity(),R.style.AlertDialogCustom);

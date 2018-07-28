@@ -14,9 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +48,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 
 public class DetailedEvent extends AppCompatActivity {
 
@@ -136,8 +135,8 @@ public class DetailedEvent extends AppCompatActivity {
                     long value=(long) dataSnapshot.getValue();
                     if (value==1){
                         isRegistrationStarted=true;
-                        Toast.makeText(DetailedEvent.this,"Registrations are open!",Toast.LENGTH_SHORT).show();
-                    }else Toast.makeText(DetailedEvent.this,"Registrations are closed!",Toast.LENGTH_LONG).show();
+                        new MyToast(DetailedEvent.this,"Registrations are open!",Toast.LENGTH_SHORT,true).show();
+                    }else new MyToast(DetailedEvent.this,"Registrations are closed!",Toast.LENGTH_SHORT,false).show();
                 }
             }
             @Override
@@ -284,7 +283,7 @@ public class DetailedEvent extends AppCompatActivity {
         if (!sharedPreferences.getString("FFID","").isEmpty()){
             //open registration page if registration has started
             if (!isRegistrationStarted){
-                Toast.makeText(DetailedEvent.this,"Registrations are closed for now!",Toast.LENGTH_LONG).show();
+                new MyToast(DetailedEvent.this,"Registrations are closed!",Toast.LENGTH_SHORT,false).show();
                 return;
             }
             Intent intent=new Intent(getApplicationContext(),EventRegActivity.class);
@@ -338,7 +337,7 @@ public class DetailedEvent extends AppCompatActivity {
                     builder5.normalText("Add as favourite")
                             .normalImageRes(R.drawable.ic_favorite_border);
                     bmb.setBuilder(4,builder5);
-                    Toast.makeText(this,e_name+" removed from favourites!",Toast.LENGTH_SHORT).show();
+                    new MyToast(DetailedEvent.this,e_name+" removed from favourites!",Toast.LENGTH_SHORT,false).show();
                     break;
                 }
             }
@@ -349,7 +348,8 @@ public class DetailedEvent extends AppCompatActivity {
             builder5.normalText("Remove favourite")
                     .normalImageRes(R.drawable.ic_favorite);
             bmb.setBuilder(4,builder5);
-            Toast.makeText(this,e_name+" added as favourite!",Toast.LENGTH_SHORT).show();
+            new MyToast(DetailedEvent.this,e_name+" added as favourite!",Toast.LENGTH_SHORT,true).show();
+
         }
     }
 
@@ -375,7 +375,8 @@ public class DetailedEvent extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 Log.e("file","File download failed!\nError: "+e.getMessage());
                 dialog.dismiss();
-                Toast.makeText(DetailedEvent.this, "Network error!", Toast.LENGTH_SHORT).show();
+                new MyToast(DetailedEvent.this,"Network error!",Toast.LENGTH_SHORT,false).show();
+
             }
         });
     }
@@ -403,7 +404,7 @@ public class DetailedEvent extends AppCompatActivity {
             }catch (IOException e){
                 Log.e("file",""+e.getMessage());
                 dialog.cancel();
-                Toast.makeText(DetailedEvent.this, "An error occurred!", Toast.LENGTH_SHORT).show();
+                new MyToast(DetailedEvent.this, "An error occurred!", Toast.LENGTH_SHORT,false).show();
                 //some error occurred in file , download data again
                 Log.e("file","an error occurred in event file. have to download.");
                 downloadEventData(false);
@@ -430,7 +431,7 @@ public class DetailedEvent extends AppCompatActivity {
                             stream.close();
                             Log.e("file","Event file updated.\nShowing new data to user");
                             showData(object);
-                            Toast.makeText(this, "Event details have been updated!", Toast.LENGTH_LONG).show();
+                            new MyToast(this, "Event details have been updated!", Toast.LENGTH_LONG,true).show();
                         }catch (IOException e){
                             Log.e("file","During file update :\n"+e.getMessage());
                         }
@@ -451,7 +452,7 @@ public class DetailedEvent extends AppCompatActivity {
         }catch(JSONException e){
             Log.e("file",e.getMessage());
             dialog.dismiss();
-            Toast.makeText(this, "An error occurred! Please Reload page.", Toast.LENGTH_SHORT).show();
+            new MyToast(this, "An error occurred! Please Reload page.",false).show();
         }
     }
 
@@ -503,7 +504,7 @@ public class DetailedEvent extends AppCompatActivity {
         }catch(JSONException e){
             Log.e("file",e.getMessage());
             dialog.dismiss();
-            Toast.makeText(this, "An error occurred! Please Reload page.", Toast.LENGTH_SHORT).show();
+            new MyToast(this, "An error occurred! Please Reload page.",false).show();
         }
     }
 

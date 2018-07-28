@@ -45,6 +45,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 import sahil.iiitk_foundationday_app.adapters.UserAdapter;
 import sahil.iiitk_foundationday_app.model.Notif;
 import sahil.iiitk_foundationday_app.model.User;
@@ -305,7 +306,7 @@ public class AdminActionsFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         String dialogue_entry = input.getText().toString();
                         if (dialogue_entry.isEmpty()){
-                            Toast.makeText(getActivity(),"Empty Message!",Toast.LENGTH_SHORT).show();
+                            new MyToast(getActivity(),"Empty Message!",false).show();
                         }else{
                             dialog.cancel();
                             //post notification
@@ -354,17 +355,6 @@ public class AdminActionsFragment extends Fragment {
         notification.setWhich_club(a);
         DatabaseReference mRef = db.getReference().child("Notification");
         mRef.push().setValue(notification);
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void aVoid) {
-//                Toast.makeText(getActivity(), "Notification push Successful!", Toast.LENGTH_LONG).show();
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(getActivity(), "Notification push failed. Try again!", Toast.LENGTH_LONG).show();
-//            }
-//        });
 
     }
 
@@ -400,7 +390,7 @@ public class AdminActionsFragment extends Fragment {
                              public void onCancelled(DatabaseError databaseError) {
                              }
                          });
-                         Toast.makeText(getActivity(), "Lives Reset Successful!", Toast.LENGTH_SHORT).show();
+                         new MyToast(getActivity(), "Lives Reset Successful!").show();
                      }
                 });
 

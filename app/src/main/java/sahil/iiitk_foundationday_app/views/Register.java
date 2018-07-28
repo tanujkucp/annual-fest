@@ -50,6 +50,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 import sahil.iiitk_foundationday_app.mail.GMailSender;
 import sahil.iiitk_foundationday_app.model.User;
 
@@ -269,7 +270,7 @@ public class Register extends AppCompatActivity
                 " IIIT Kota.\nWe would be glad to see you on 23rd and 24th March,2018.\n\nRegards\nAdmin";
         final String recepient;
         if (email.getText().toString().isEmpty()){
-            Toast.makeText(this,"Email is not provided!",Toast.LENGTH_SHORT).show();
+            new MyToast(this,"Email is not provided!",false).show();
             return;
         }else{
             recepient=email.getText().toString();
@@ -310,7 +311,7 @@ public class Register extends AppCompatActivity
 
         if (otherstrue==1) college=myEditText.getText().toString();
         if(college.length() == 0){
-            Toast.makeText(this, "Enter appropriate College", Toast.LENGTH_SHORT).show();
+            new MyToast(this, "Enter appropriate College",false).show();
             flag = 1;
         }
 
@@ -330,7 +331,7 @@ public class Register extends AppCompatActivity
         }
 
         if(year.length() == 0){
-            Toast.makeText(this, "Enter correct year", Toast.LENGTH_SHORT).show();
+            new MyToast(this, "Enter correct year",false).show();
             flag = 1;
         }
 
@@ -368,7 +369,7 @@ public class Register extends AppCompatActivity
             getFFid();
         }
         else{
-            Toast.makeText(this, "Enter correct details", Toast.LENGTH_SHORT).show();
+            new MyToast(this, "Enter correct details",false).show();
             btn.setEnabled(true);
         }
     }
@@ -382,7 +383,7 @@ public class Register extends AppCompatActivity
         user.setQuiz_correct(0);
         DatabaseReference mRef = database.getReference().child("Users");
         mRef.push().setValue(user);
-        Toast.makeText(getApplicationContext(),"Your FFID is : FF"+id,Toast.LENGTH_LONG).show();
+        new MyToast(Register.this,"Your FFID is : FF"+id,Toast.LENGTH_LONG).show();
 
         userdetails = getSharedPreferences("userInfo", MODE_PRIVATE);
         SharedPreferences.Editor editor=userdetails.edit();
@@ -438,7 +439,7 @@ public class Register extends AppCompatActivity
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e("file","Primary data File download failed!\nError: "+e.getMessage());
-                        Toast.makeText(Register.this,"Network error! Please reopen app with Data connection ON, otherwise you may not receive confirmation email.",Toast.LENGTH_LONG).show();
+                        new MyToast(Register.this,"Network error! Please reopen app with Data connection ON, otherwise you may not receive confirmation email.",Toast.LENGTH_LONG,false).show();
                     }
                 });
             }
@@ -482,7 +483,7 @@ public class Register extends AppCompatActivity
             Log.e("file","Primary file parsing done.");
         }catch(JSONException e){
             Log.e("file",e.getMessage());
-            Toast.makeText(this, "Network error occurred! Please Reload page.", Toast.LENGTH_SHORT).show();
+            new MyToast(this, "Network error occurred! Please Reload page.",false).show();
         }
     }
 }

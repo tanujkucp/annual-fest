@@ -94,6 +94,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 import sahil.iiitk_foundationday_app.adapters.NotifAdapter;
 import sahil.iiitk_foundationday_app.model.AdminIDs;
 
@@ -229,7 +230,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if (sharedPreferences.getString("FFID", "").isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Please register first!", Toast.LENGTH_SHORT).show();
+                    new MyToast(MainActivity.this, "Please register first!",false).show();
                 }else{
                     Intent intent = new Intent(MainActivity.this, UserActivityPage.class);
                     MainActivity.this.startActivity(intent);
@@ -393,7 +394,7 @@ public class MainActivity extends AppCompatActivity
                     client.signOut();
                     Intent intent = new Intent(MainActivity.this, Login_Screen.class);
                     MainActivity.this.startActivity(intent);
-                    Toast.makeText(MainActivity.this, "Logged out successfully!", Toast.LENGTH_SHORT).show();
+                    new MyToast(MainActivity.this, "Logged out successfully!").show();
                     MainActivity.this.finish();
                 }
             }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -421,7 +422,7 @@ public class MainActivity extends AppCompatActivity
                 super.onBackPressed();
             } else {
                 this.backPressedToExitOnce = true;
-                Toast.makeText(getApplicationContext(), "Press again to exit", Toast.LENGTH_SHORT).show();
+                new MyToast(MainActivity.this, "Press again to exit").show();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -440,7 +441,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_register) {
             if (!sharedPreferences.getString("FFID", "").isEmpty()) {
-                Toast.makeText(getApplicationContext(), "You are already registered!", Toast.LENGTH_SHORT).show();
+                new MyToast(MainActivity.this, "You are already registered!",Toast.LENGTH_SHORT,true).show();
             } else {
                 Bundle bundle = new Bundle();
                 if (!sharedPreferences.getString("name", "").isEmpty()) {
@@ -465,7 +466,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_queries) {
             //check if the user has an account in the app or not
             if (sharedPreferences.getString("FFID", "").isEmpty()) {
-                Toast.makeText(this, "Please register first to chat!", Toast.LENGTH_SHORT).show();
+                new MyToast(this, "Please register first to chat!",false).show();
             }else{
                 Intent intent=new Intent(this,ContactUs.class);
                 intent.putExtra("isAdmin",false);
@@ -482,7 +483,7 @@ public class MainActivity extends AppCompatActivity
             dialog.show();
             //check if the user has an account in the app or not
             if (sharedPreferences.getString("FFID", "").isEmpty()) {
-                Toast.makeText(this, "You have to register in the App to play game.", Toast.LENGTH_SHORT).show();
+                new MyToast(this, "You have to register in the App to play game.",false).show();
             } else {
                 // check if quiz is open or not by using  a value stored on firebase
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -499,7 +500,7 @@ public class MainActivity extends AppCompatActivity
                                 MainActivity.this.startActivity(intent);
                             } else {
                                 Log.e("home", "Quiz not started yet.");
-                                Toast.makeText(getApplicationContext(), "Quiz has not been started yet!\nCome back soon.", Toast.LENGTH_SHORT).show();
+                                new MyToast(MainActivity.this, "Quiz has not been started yet!\nCome back soon.",false).show();
                             }
                             dialog.dismiss();
                             myRef.removeEventListener(listener);
@@ -748,7 +749,7 @@ public class MainActivity extends AppCompatActivity
             Log.e("adminpage", "Admin ID confirmed!");
             int index = adminIDs.indexOf(dialogue_entry);
             String club_name = adminNames.get(index);
-            Toast.makeText(getApplicationContext(), "Welcome Admin!", Toast.LENGTH_SHORT).show();
+            new MyToast(MainActivity.this, "Welcome Admin!").show();
             dialog.dismiss();
             //goto Admin page
             Intent intent = new Intent(getApplicationContext(), AdminPage.class);
@@ -757,7 +758,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             Log.e("adminpage", "Wrong Admin ID");
             dialog.dismiss();
-            Toast.makeText(this, "Wrong Admin ID!", Toast.LENGTH_SHORT).show();
+            new MyToast(this, "Wrong Admin ID!",false).show();
         }
     }
 
@@ -866,7 +867,7 @@ public class MainActivity extends AppCompatActivity
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(MainActivity.this,"Details have been loaded, Please close the app and restart.",Toast.LENGTH_LONG).show();
+                                new MyToast(MainActivity.this,"Details have been loaded, Please close the app and restart.",Toast.LENGTH_LONG).show();
                             }
                         });
                     }
@@ -898,7 +899,7 @@ public class MainActivity extends AppCompatActivity
             }catch (IOException e){
                 Log.e("file",""+e.getMessage());
                 Log.e("file","An error occurred. have to download.");
-                Toast.makeText(this, "An error occurred in fetching details!", Toast.LENGTH_SHORT).show();
+                new MyToast(this, "An error occurred in fetching details!",false).show();
                 //some error occurred in file , download data again
             }
         }catch (FileNotFoundException e){
@@ -929,7 +930,7 @@ public class MainActivity extends AppCompatActivity
             Log.e("file","Primary file parsing done.");
         }catch(JSONException e){
             Log.e("file",e.getMessage());
-            Toast.makeText(this, "An error occurred! Please Reload page.", Toast.LENGTH_SHORT).show();
+            new MyToast(this, "An error occurred! Please Reload page.",false).show();
         }
     }
 

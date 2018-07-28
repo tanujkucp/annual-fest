@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
     GoogleMap mGoogleMap;
@@ -78,7 +79,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Dialog dialog = api.getErrorDialog(this, isAvailable, 0);
             dialog.show();
         } else {
-            Toast.makeText(getApplicationContext(), "Can't connect to play services", Toast.LENGTH_LONG);
+            new MyToast(MapActivity.this, "Can't connect to play services", Toast.LENGTH_LONG,false).show();
         }
         return false;
     }

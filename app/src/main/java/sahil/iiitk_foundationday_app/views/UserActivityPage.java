@@ -37,6 +37,7 @@ import java.util.List;
 
 import sahil.iiitk_foundationday_app.R;
 import sahil.iiitk_foundationday_app.adapters.FavouriteListAdapter;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 import sahil.iiitk_foundationday_app.adapters.RegisteredEventAdapter;
 import sahil.iiitk_foundationday_app.model.MyPersonalRegistrations;
 import sahil.iiitk_foundationday_app.model.SingleEventPersonal;
@@ -199,7 +200,7 @@ public class UserActivityPage extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (selectedYear!=null) updateYear();
-                    else Toast.makeText(UserActivityPage.this,"Select an option!",Toast.LENGTH_SHORT).show();
+                    else new MyToast(UserActivityPage.this,"Select an option!",false).show();
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -232,13 +233,13 @@ public class UserActivityPage extends AppCompatActivity {
                             editor.apply();
                             ((TextView)profile.findViewById(R.id.profile_branch)).setText
                                     (pref.getString("Year","")+" year, "+pref.getString("department",""));
-                            Toast.makeText(UserActivityPage.this,"Year updated!",Toast.LENGTH_SHORT).show();
+                            new MyToast(UserActivityPage.this,"Year updated!").show();
                             dialog.dismiss();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(UserActivityPage.this,"Update failed! Try again later.",Toast.LENGTH_SHORT).show();
+                            new MyToast(UserActivityPage.this,"Update failed! Try again later.",false).show();
                             dialog.dismiss();
                         }
                     });

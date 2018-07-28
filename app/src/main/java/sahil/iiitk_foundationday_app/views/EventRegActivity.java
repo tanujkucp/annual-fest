@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 import sahil.iiitk_foundationday_app.mail.GMailSender;
 import sahil.iiitk_foundationday_app.model.EventReg;
 import sahil.iiitk_foundationday_app.model.MyPersonalRegistrations;
@@ -143,7 +144,7 @@ public class EventRegActivity extends AppCompatActivity {
                 }
             });
         } catch (Exception ex) {
-            Toast.makeText(getApplicationContext(), "Problem", Toast.LENGTH_SHORT).show();
+            new MyToast(EventRegActivity.this, "Problem",false).show();
         }
         btnl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +178,7 @@ public class EventRegActivity extends AppCompatActivity {
                     } else {
                         btnl.setEnabled(true);
                         Log.e("registration", "User's personal FFID is not present in the list!");
-                        Toast.makeText(getApplicationContext(), "You can't register for others unless you have a team!", Toast.LENGTH_LONG).show();
+                        new MyToast(EventRegActivity.this, "You can't register for others unless you have a team!", Toast.LENGTH_LONG,false).show();
                     }
                 } else {
                     btnl.setEnabled(true);
@@ -224,7 +225,8 @@ public class EventRegActivity extends AppCompatActivity {
                     dialog.dismiss();
                     isRegistrationProcessRunning=false;
                     allEds.get(check_number).setError("This FFID does not exist!");
-                    Toast.makeText(getApplicationContext(), "Member with FFID: " + a + " does not exist!", Toast.LENGTH_SHORT).show();
+                    new MyToast(EventRegActivity.this, "Member with FFID: " + a + " does not exist!",false).show();
+
                 } else {
                     check_number++;
                     if (check_number < IDs.size()) {
@@ -317,7 +319,7 @@ public class EventRegActivity extends AppCompatActivity {
         } else {
             dialog.dismiss();
             isRegistrationProcessRunning=false;
-            Toast.makeText(getApplicationContext(), "One or more of these FFIDs are already registered for this event!", Toast.LENGTH_LONG).show();
+            new MyToast(EventRegActivity.this, "One or more of these FFIDs are already registered for this event!", Toast.LENGTH_LONG,false).show();
         }
     }
 
@@ -500,7 +502,7 @@ public class EventRegActivity extends AppCompatActivity {
         //notify user
         dialog.dismiss();
         isRegistrationProcessRunning=false;
-        Toast.makeText(this, "Your Team is registered for " + event_name, Toast.LENGTH_LONG).show();
+        new MyToast(this, "Your Team is registered for " + event_name, Toast.LENGTH_LONG).show();
     }
 
     public void updatePersonalList(String ffid, final SingleEventPersonal event){

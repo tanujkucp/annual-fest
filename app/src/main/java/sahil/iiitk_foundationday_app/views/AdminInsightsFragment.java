@@ -34,6 +34,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 
 public class AdminInsightsFragment extends Fragment {
 
@@ -183,7 +184,7 @@ public class AdminInsightsFragment extends Fragment {
     public void makeBarChart1(){
         String[] labels=provider.getEventNames(0);
         if (labels==null){
-            Toast.makeText(getActivity(), "Reload this page after connecting to internet.", Toast.LENGTH_LONG).show();
+            new MyToast(getActivity(), "Reload this page after connecting to internet.", Toast.LENGTH_LONG,false).show();
             getActivity().finish();
         }
         barchart_label1.animate().alpha(0).setDuration(100);

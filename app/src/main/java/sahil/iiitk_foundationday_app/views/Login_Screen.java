@@ -46,6 +46,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.concurrent.TimeUnit;
 
 import sahil.iiitk_foundationday_app.R;
+import sahil.iiitk_foundationday_app.adapters.MyToast;
 import sahil.iiitk_foundationday_app.model.User;
 
 public class Login_Screen extends AppCompatActivity
@@ -186,7 +187,7 @@ public class Login_Screen extends AppCompatActivity
             @Override
             public void onVerificationCompleted(PhoneAuthCredential credential) {
                 mVerificationInProgress=false;
-                Toast.makeText(getApplicationContext(),"OTP Verified",Toast.LENGTH_SHORT).show();
+                new MyToast(Login_Screen.this,"OTP Verified").show();
                 checkPhone(personPhone);
                 myDialog.dismiss();    //so that user cannot go to login screen by pressing back button
             }
@@ -194,7 +195,7 @@ public class Login_Screen extends AppCompatActivity
             public void onVerificationFailed(FirebaseException e) {
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
-                Toast.makeText(getApplicationContext(),"Verification Failed:\n "+e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                new MyToast(Login_Screen.this,"Verification Failed:\n "+e.getLocalizedMessage(),false).show();
                 verify.setEnabled(true);
                 verify.setText("Verify");
                 phoneField.setEnabled(true);
@@ -210,13 +211,13 @@ public class Login_Screen extends AppCompatActivity
                 mVerificationId = verificationId;
                 mResendToken = token;
                 //verify.setEnabled(false);
-                Toast.makeText(getApplicationContext(),"OTP sent",Toast.LENGTH_SHORT).show();
+                new MyToast(Login_Screen.this,"OTP sent").show();
             }
 
             @Override
             public void onCodeAutoRetrievalTimeOut(String s) {
                 super.onCodeAutoRetrievalTimeOut(s);
-                Toast.makeText(getApplicationContext(),"OTP detection timeout. Try resending OTP",Toast.LENGTH_SHORT).show();
+                new MyToast(Login_Screen.this,"OTP detection timeout. Try resending OTP",false).show();
                 verify.setText("Resend OTP");
                 verify.setEnabled(true);
                 phoneField.setEnabled(true);
@@ -372,7 +373,7 @@ public class Login_Screen extends AppCompatActivity
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Toast.makeText(this, "Error code: "+e.getStatusCode(), Toast.LENGTH_SHORT).show();
+            new MyToast(this, "Error code: "+e.getStatusCode(),false).show();
         }
     }
 
@@ -469,7 +470,7 @@ public class Login_Screen extends AppCompatActivity
                 if (dataSnapshot.exists()){
                     authFFIDwithEmail(a,b);
                 }else{
-                    Toast.makeText(getApplicationContext(),"No account exists with given FFID!",Toast.LENGTH_SHORT).show();
+                    new MyToast(Login_Screen.this,"No account exists with given FFID!",false).show();
                     dialog.dismiss();
                 }
             }
@@ -518,7 +519,7 @@ public class Login_Screen extends AppCompatActivity
                     signInButton.setEnabled(true);
                     ff_login_button.setEnabled(true);
                     dialog.dismiss();
-                    Toast.makeText(getApplicationContext(),"FFID and email do not match!",Toast.LENGTH_SHORT).show();
+                    new MyToast(Login_Screen.this,"FFID and email do not match!",false).show();
                 }
             }
             @Override
@@ -542,7 +543,7 @@ public class Login_Screen extends AppCompatActivity
             super.onBackPressed();
         } else {
             this.backPressedToExitOnce = true;
-            Toast.makeText(this,"Press again to exit!",Toast.LENGTH_SHORT).show();
+            new MyToast(this,"Press again to exit!").show();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
