@@ -3,6 +3,7 @@ package sahil.iiitk_foundationday_app.views;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -45,6 +46,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity
     JSONArray pri_contacts,pri_schedule,pri_images;
     SharedPreferences sharedPreferences;
     SharedPreferences sequencePref;
+    ProgressDialog dialog;
 
 
     //interface methods to get data from primary file
@@ -243,6 +246,9 @@ public class MainActivity extends AppCompatActivity
 
         //read the primary file data
         readFile();
+
+        dialog=new ProgressDialog(MainActivity.this);
+        dialog.setCancelable(false);
     }
 
     @Override
@@ -466,7 +472,14 @@ public class MainActivity extends AppCompatActivity
                 MainActivity.this.startActivity(intent);
             }
 
+        }
+        else if (id == R.id.nav_email){
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto",getString(R.string.contact_email), null));
+            startActivity(Intent.createChooser(emailIntent, "Send Email via"));
         } else if (id == R.id.nav_quiz) {
+            dialog.setMessage("contacting server...");
+            dialog.show();
             //check if the user has an account in the app or not
             if (sharedPreferences.getString("FFID", "").isEmpty()) {
                 Toast.makeText(this, "You have to register in the App to play game.", Toast.LENGTH_SHORT).show();
@@ -488,6 +501,7 @@ public class MainActivity extends AppCompatActivity
                                 Log.e("home", "Quiz not started yet.");
                                 Toast.makeText(getApplicationContext(), "Quiz has not been started yet!\nCome back soon.", Toast.LENGTH_SHORT).show();
                             }
+                            dialog.dismiss();
                             myRef.removeEventListener(listener);
                         }
                     }
@@ -678,9 +692,7 @@ public class MainActivity extends AppCompatActivity
         final EditText input = new EditText(this);
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        // input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
-
         //   Set up the buttons
         builder.setPositiveButton("GO", new DialogInterface.OnClickListener() {
             @Override
@@ -700,6 +712,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void checkAdminID() {
+        dialog.setMessage("checking Admin ID");
+        dialog.show();
         db = FirebaseDatabase.getInstance();
         ref = db.getReference("Admin");
         Query query = ref;
@@ -735,12 +749,14 @@ public class MainActivity extends AppCompatActivity
             int index = adminIDs.indexOf(dialogue_entry);
             String club_name = adminNames.get(index);
             Toast.makeText(getApplicationContext(), "Welcome Admin!", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
             //goto Admin page
             Intent intent = new Intent(getApplicationContext(), AdminPage.class);
             intent.putExtra("club_name", club_name);
             this.startActivity(intent);
         } else {
             Log.e("adminpage", "Wrong Admin ID");
+            dialog.dismiss();
             Toast.makeText(this, "Wrong Admin ID!", Toast.LENGTH_SHORT).show();
         }
     }

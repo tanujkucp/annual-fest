@@ -1,11 +1,18 @@
 package sahil.iiitk_foundationday_app.adapters;
 //Made by Tanuj
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -26,6 +33,40 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
             nameView =v.findViewById(R.id.card_contact_name);
             titleView=v.findViewById(R.id.card_contact_title);
             PhoneView=v.findViewById(R.id.card_contact_phone);
+            final PopupMenu popup = new PopupMenu(con, v);
+            MenuInflater inflater = popup.getMenuInflater();
+            inflater.inflate(R.menu.contact_menu, popup.getMenu());
+
+            PopupMenu.OnMenuItemClickListener listener=new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()){
+                        case R.id.contact_call : Intent intent = new Intent(Intent.ACTION_DIAL);
+                                                    intent.setData(Uri.parse("tel:"+getPhoneView().getText().toString()));
+                                                    con.startActivity(intent);
+                                                    return true;
+                        case R.id.contact_save : Intent intent2=new Intent(Intent.ACTION_INSERT);
+                            intent2.setType(ContactsContract.Contacts.CONTENT_TYPE)
+                                    .putExtra(ContactsContract.Intents.Insert.NAME,getNameView().getText().toString())
+                                    .putExtra(ContactsContract.Intents.Insert.COMPANY,con.getString(R.string.app_name))
+                                    .putExtra(ContactsContract.Intents.Insert.EMAIL,con.getString(R.string.contact_email))
+                                    .putExtra(ContactsContract.Intents.Insert.JOB_TITLE,getTitleView().getText().toString())
+                                    .putExtra(ContactsContract.Intents.Insert.PHONE,getPhoneView().getText().toString());
+                            con.startActivity(intent2);
+                            return true;
+                    }
+                    return false;
+                }
+            };
+            popup.setOnMenuItemClickListener(listener);
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popup.show();
+
+                }
+            });
 
         }
 

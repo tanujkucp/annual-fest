@@ -59,9 +59,9 @@ dependencies {
     implementation 'com.diogobernardino:williamchart:2.5.0'
     implementation 'com.nightonke:boommenu:2.1.1'
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
-    implementation files('C:/Users/SHIVAM/AndroidStudioProjects/annual-fest/libs/activation.jar')
-    implementation files('C:/Users/SHIVAM/AndroidStudioProjects/annual-fest/libs/additionnal.jar')
-    implementation files('C:/Users/SHIVAM/AndroidStudioProjects/annual-fest/libs/mail.jar')
+    implementation files('../libs/activation.jar')
+    implementation files('../libs/additionnal.jar')
+    implementation files('../libs/mail.jar')
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -15,15 +15,18 @@ public class FavouriteListAdapter extends RecyclerView.Adapter<FavouriteListAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView name;
+        private final View separator;
 
         public ViewHolder(View v) {
             super(v);
             name = v.findViewById(R.id.fav_list_name);
+            separator=v.findViewById(R.id.fav_list_item_separator);
         }
 
         public TextView getNameView() {
             return name;
         }
+        public View getSeparator(){return separator;}
     }
 
     public FavouriteListAdapter(List<String> data){
@@ -43,6 +46,7 @@ public class FavouriteListAdapter extends RecyclerView.Adapter<FavouriteListAdap
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
         viewHolder.getNameView().setText(events.get(pos));
+        if (pos==getItemCount()-1) viewHolder.getSeparator().setVisibility(View.INVISIBLE);
     }
 
     @Override

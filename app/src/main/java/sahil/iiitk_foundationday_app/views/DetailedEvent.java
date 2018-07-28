@@ -9,6 +9,7 @@ import android.provider.CalendarContract;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -66,6 +67,7 @@ public class DetailedEvent extends AppCompatActivity {
     TextOutsideCircleButton.Builder builder5;
     File path,temp;
     ProgressDialog dialog;
+    ActionBar bar;
     TextOutsideCircleButton.Builder b1,b2,b3,b4,b5;
 
     @Override
@@ -83,10 +85,11 @@ public class DetailedEvent extends AppCompatActivity {
         //setting the views
         Toolbar toolbar = findViewById(R.id.event_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         collapsingToolbarLayout = findViewById(R.id.event_collapsing);
         collapsingToolbarLayout.setTitleEnabled(true);
+        bar= getSupportActionBar();
+        bar.setDisplayHomeAsUpEnabled(true);
 
         event_picture = findViewById(R.id.event_picture);
         bmb=findViewById(R.id.event_bmb);
@@ -131,9 +134,10 @@ public class DetailedEvent extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     long value=(long) dataSnapshot.getValue();
-                    if (value==1) isRegistrationStarted=true;
-                    //todo show somewhere on the screen the live status whether the registrations have started or not and update that too
-
+                    if (value==1){
+                        isRegistrationStarted=true;
+                        Toast.makeText(DetailedEvent.this,"Registrations are open!",Toast.LENGTH_SHORT).show();
+                    }else Toast.makeText(DetailedEvent.this,"Registrations are closed!",Toast.LENGTH_LONG).show();
                 }
             }
             @Override
@@ -198,8 +202,8 @@ public class DetailedEvent extends AppCompatActivity {
                         intent.setType(ContactsContract.Contacts.CONTENT_TYPE)
                                 .putExtra(ContactsContract.Intents.Insert.NAME,e_name+" Contact")
                                 .putExtra(ContactsContract.Intents.Insert.NOTES,e_time)
-                                .putExtra(ContactsContract.Intents.Insert.COMPANY,"Flair-Fiesta 2k19")
-                                .putExtra(ContactsContract.Intents.Insert.EMAIL,"contactus@flairfiesta.com")
+                                .putExtra(ContactsContract.Intents.Insert.COMPANY,getString(R.string.app_name))
+                                .putExtra(ContactsContract.Intents.Insert.EMAIL,getString(R.string.contact_email))
                                 .putExtra(ContactsContract.Intents.Insert.PHONE,numbers[0]);
                         if (numbers.length>1) intent.putExtra(ContactsContract.Intents.Insert.SECONDARY_PHONE,numbers[1]);
                         DetailedEvent.this.startActivity(intent);
@@ -466,6 +470,7 @@ public class DetailedEvent extends AppCompatActivity {
             max=object.getInt("max_members");
 
             collapsingToolbarLayout.setTitle(e_name);
+            Log.e("title","showing title: "+e_name);
             event_date_time.setText(e_time);
             event_contact.setText("Contact: "+e_contact);
             event_venue.setText(e_venue);

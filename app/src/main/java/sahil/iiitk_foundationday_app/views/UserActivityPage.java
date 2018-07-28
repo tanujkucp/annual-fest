@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -53,13 +56,29 @@ public class UserActivityPage extends AppCompatActivity {
         ffid=pref.getString("FFID","");
         favourites=getSharedPreferences("fav"+ffid,MODE_PRIVATE);
 
-        //todo also user's profile - name,email,mobile number in a beautiful way
+        //show user profile details
+        showProfile();
 
         //get user's registered events' data
         downloadPersonalRegistrations();
 
         //get user's favourite events
         getFavourites();
+    }
+
+    public void showProfile(){
+        View profile=findViewById(R.id.include_profile);
+        ((TextView)profile.findViewById(R.id.profile_name)).setText(pref.getString("name",""));
+        ((TextView)profile.findViewById(R.id.profile_ffid)).setText(pref.getString("FFID",""));
+        ((TextView)profile.findViewById(R.id.profile_collageID)).setText(pref.getString("collegeid",""));
+        ((TextView)profile.findViewById(R.id.profile_emailID)).setText(pref.getString("email",""));
+        ((TextView)profile.findViewById(R.id.profile_mobile)).setText(pref.getString("phone",""));
+        ((TextView)profile.findViewById(R.id.profile_collage)).setText(pref.getString("college",""));
+
+        ((TextView)profile.findViewById(R.id.profile_branch)).setText
+                (pref.getString("Year","")+" year, "+pref.getString("department",""));
+        ((TextView)profile.findViewById(R.id.profile_gender)).setText
+                (pref.getString("gender","")+", "+pref.getString("MOS",""));
 
     }
 

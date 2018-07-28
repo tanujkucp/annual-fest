@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/grey_background"
+    android:gravity="center_horizontal"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imageView4"
@@ -19,9 +20,9 @@
             />
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputLayout
@@ -47,7 +48,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_width="150dp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
@@ -55,6 +56,7 @@
             android:text="Verify by OTP"
             android:onClick="phoneLogin"
             android:textSize="16sp"
+            android:layout_marginBottom="70dp"
             android:textColor="@color/grey800"
             android:background="@drawable/my_activity_button"
             android:layout_height="wrap_content" />
