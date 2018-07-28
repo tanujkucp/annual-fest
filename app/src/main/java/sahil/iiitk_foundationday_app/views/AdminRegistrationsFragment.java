@@ -192,7 +192,11 @@ public class AdminRegistrationsFragment extends Fragment {
 
         TapTargetView.showFor(getActivity(),
                 TapTarget.forView(event_spinner,"Events","Select an event to see its registrations!")
-                        .transparentTarget(true).cancelable(false)
+                        .transparentTarget(false).cancelable(false).outerCircleColor(R.color.yellow)
+                        .outerCircleAlpha(0.9f)
+                        .descriptionTextAlpha(1f)
+                        .titleTextSize(25)
+                        .descriptionTextColor(R.color.white)
                 ,new TapTargetView.Listener(){
                     @Override
                     public void onTargetClick(TapTargetView view) {

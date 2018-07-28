@@ -507,7 +507,11 @@ public class DetailedEvent extends AppCompatActivity {
 
         TapTargetView.showFor(DetailedEvent.this,
                 TapTarget.forView(bmb,"Register here","Click here to register for the event and other" +
-                        " cool options!").transparentTarget(true).cancelable(false)
+                        " cool options!").transparentTarget(false).cancelable(false).outerCircleColor(R.color.pink800)
+                        .outerCircleAlpha(0.7f)
+                        .descriptionTextAlpha(1f)
+                        .titleTextSize(25)
+                        .descriptionTextColor(R.color.white)
                 ,new TapTargetView.Listener(){
                     @Override
                     public void onTargetClick(TapTargetView view) {

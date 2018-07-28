@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        app:bmb_normalColor="#4FC3F7"
+        app:bmb_normalColor="#FF7043"
         app:bmb_buttonEnum="textOutsideCircle"
         app:bmb_piecePlaceEnum="piecePlace_dot_4_2"
         app:bmb_buttonPlaceEnum="buttonPlace_sc_4_1"

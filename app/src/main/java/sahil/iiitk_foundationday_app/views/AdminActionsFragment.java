@@ -228,7 +228,7 @@ public class AdminActionsFragment extends Fragment {
                 .textGravity(Gravity.CENTER)
                 .subTextGravity(Gravity.CENTER)
                 .rippleEffect(true)
-                .normalColor(Color.parseColor("#E91E63"))
+                .normalColor(Color.parseColor("#EC407A"))
                 .buttonWidth(Util.dp2px(300))
                 .buttonHeight(Util.dp2px(60))
                 .textSize(20)
@@ -250,7 +250,7 @@ public class AdminActionsFragment extends Fragment {
                 .textGravity(Gravity.CENTER)
                 .subTextGravity(Gravity.CENTER)
                 .rippleEffect(true)
-                .normalColor(Color.parseColor("#43A047"))
+                .normalColor(Color.parseColor("#AB47BC"))
                 .buttonWidth(Util.dp2px(300))
                 .buttonHeight(Util.dp2px(60))
                 .textSize(20)
@@ -422,17 +422,35 @@ public class AdminActionsFragment extends Fragment {
         List<TapTarget> targets=new ArrayList<>();
         //todo customise these targets with different colors and styles
         targets.add(TapTarget.forView(searchView,"Search here!"
-                ,"Type text here to search specific users.").id(1)
+                ,"Type text here to search specific users.")
+                .outerCircleColor(R.color.blue800)
+                .outerCircleAlpha(0.7f)
+                .descriptionTextAlpha(1f)
+                .titleTextSize(25)
+                .descriptionTextColor(R.color.white)
+                .id(1)
                 .cancelable(false)
-                .transparentTarget(true));
+                .transparentTarget(false));
         targets.add(TapTarget.forView(spinner,"Search Property"
-                ,"Choose the property to search for like name etc.").id(2)
+                ,"Choose the property to search for like name etc.")
+                .outerCircleColor(R.color.orange)
+                .outerCircleAlpha(0.8f)
+                .descriptionTextAlpha(1f)
+                .titleTextSize(25)
+                .descriptionTextColor(R.color.white)
+                .id(2)
                 .cancelable(false)
-                .transparentTarget(true));
+                .transparentTarget(false));
         targets.add(TapTarget.forView(bmb,"Actions"
-                ,"Click here for quick actions like Broadcasts etc.").id(3)
+                ,"Click here for quick actions like Broadcasts etc.")
+                .outerCircleColor(R.color.purple)
+                .outerCircleAlpha(0.7f)
+                .descriptionTextAlpha(1f)
+                .titleTextSize(25)
+                .descriptionTextColor(R.color.white)
+                .id(3)
                 .cancelable(false)
-                .transparentTarget(true));
+                .transparentTarget(false));
 
         TapTargetSequence sequence=new TapTargetSequence(getActivity())
                 .targets(targets)

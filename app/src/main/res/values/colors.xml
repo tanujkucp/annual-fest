@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#d75404</color>
     <color name="colorPrimaryDark">#616161</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#D81B60</color>
     <color name="white">#ffffff</color>
     <color name="status">#000000</color>
     <color name="ert">#800080</color>
@@ -65,6 +65,11 @@
     <color name="blue100">#BBDEFB</color>
 
     <color name="pink800">#D81B60</color>
+    <color name="pink500">#EC407A</color>
+    <color name="orange">#F57C00</color>
+    <color name="green">#388E3C</color>
+    <color name="yellow">#F9A825</color>
+    <color name="purple">#9C27B0</color>
 
 
 </resources>
