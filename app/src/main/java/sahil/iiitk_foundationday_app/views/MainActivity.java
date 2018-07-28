@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -70,6 +71,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.nightonke.boommenu.Animation.EaseEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
@@ -774,7 +776,9 @@ public class MainActivity extends AppCompatActivity
         TextOutsideCircleButton.Builder builder1 = new TextOutsideCircleButton.Builder()
                 .normalImageRes(R.drawable.icon_facebook)
                 .normalText("Facebook")
+                .normalColor(Color.parseColor("#9FA8DA"))
                 .shadowEffect(true)
+                .rotateText(false)
                 .textGravity(Gravity.CENTER)
                 .textSize(15)
                 .rippleEffect(true)
@@ -792,6 +796,8 @@ public class MainActivity extends AppCompatActivity
                 .normalImageRes(R.drawable.icon_instagram)
                 .normalText("Instagram")
                 .shadowEffect(true)
+                .rotateText(false)
+                .normalColor(Color.parseColor("#F48FB1"))
                 .textGravity(Gravity.CENTER)
                 .textSize(15)
                 .rippleEffect(true)
@@ -809,8 +815,10 @@ public class MainActivity extends AppCompatActivity
                 .normalImageRes(R.drawable.ic_launcher_round_small)
                 .normalText("flairfiesta.com")
                 .shadowEffect(true)
+                .rotateText(false)
                 .textGravity(Gravity.CENTER)
                 .textSize(15)
+                .normalColor(Color.parseColor("#E0E0E0"))
                 .rippleEffect(true)
                 .textWidth(Util.dp2px(100))
                 .listener(new OnBMClickListener() {
@@ -827,6 +835,8 @@ public class MainActivity extends AppCompatActivity
                 .normalImageRes(R.drawable.icon_iiitkota)
                 .normalText("iiitkota.ac.in")
                 .shadowEffect(true)
+                .rotateText(false)
+                .normalColor(Color.parseColor("#FFCC80"))
                 .textGravity(Gravity.CENTER)
                 .textSize(15)
                 .rippleEffect(true)
