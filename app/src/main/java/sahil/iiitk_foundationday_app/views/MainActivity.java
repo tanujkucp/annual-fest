@@ -536,7 +536,7 @@ public class MainActivity extends AppCompatActivity
         Log.e("taptarget","inflating menu");
         //need to fire this method after some time because menu is taking time to inflate
         //otherwise it will crash
-        //todo change the delay here accordingly
+        // change the delay here accordingly
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -667,7 +667,7 @@ public class MainActivity extends AppCompatActivity
             //notification for devices running SDK<26
             NotificationCompat.Builder builder =
                     new NotificationCompat.Builder(this)
-                            .setSmallIcon(R.drawable.ic_launcher_round)
+                            .setSmallIcon(R.drawable.ic_launcher_round_small)
                             .setContentTitle("FlairFiesta 2k18")
                             .setTicker(a)
                             .setAutoCancel(true)

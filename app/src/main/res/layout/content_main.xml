@@ -78,16 +78,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         app:bmb_normalColor="#FF7043"
+        app:bmb_backPressListened="true"
+        app:bmb_backgroundEffect="true"
         app:bmb_buttonEnum="textOutsideCircle"
         app:bmb_piecePlaceEnum="piecePlace_dot_4_2"
         app:bmb_buttonPlaceEnum="buttonPlace_sc_4_1"
-        app:bmb_showMoveEaseEnum="inSine"
-        app:bmb_showScaleEaseEnum="inSine"
-        app:bmb_showRotateEaseEnum="inSine"
-        app:bmb_hideMoveEaseEnum="inSine"
-        app:bmb_hideScaleEaseEnum="inSine"
-        app:bmb_hideRotateEaseEnum="inSine"
-        app:bmb_backgroundEffect="true"
-        app:bmb_backPressListened="true"
-        />
+        app:bmb_dotRadius="0dp"
+        app:bmb_shadowEffect="true">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_web" />
+    </com.nightonke.boommenu.BoomMenuButton>
 </android.support.design.widget.CoordinatorLayout>

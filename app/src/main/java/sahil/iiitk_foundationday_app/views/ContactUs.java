@@ -1,17 +1,26 @@
 package sahil.iiitk_foundationday_app.views;
 //Made by Tanuj
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +38,7 @@ import sahil.iiitk_foundationday_app.R;
 import sahil.iiitk_foundationday_app.adapters.messagesAdapter;
 import sahil.iiitk_foundationday_app.model.ChatsList;
 import sahil.iiitk_foundationday_app.model.Msg;
+import sahil.iiitk_foundationday_app.model.User;
 
 public class ContactUs extends AppCompatActivity {
 
@@ -45,7 +55,7 @@ public class ContactUs extends AppCompatActivity {
     Boolean chatBoxAvailable=false;
     long numOfNew=0;
     Boolean isAdmin=false;
-
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +64,8 @@ public class ContactUs extends AppCompatActivity {
         chatRecycler=findViewById(R.id.chat_messages_recycler);
         textBox=findViewById(R.id.chat_textBox);
         progressBar=findViewById(R.id.chat_progressBar);
+        dialog=new ProgressDialog(ContactUs.this);
+        dialog.setCancelable(false);
 
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -73,14 +85,10 @@ public class ContactUs extends AppCompatActivity {
         }else{
             actionBar.setTitle("Chat with Admin");
         }
-
-
-
         RecyclerView.LayoutManager manager=new LinearLayoutManager(ContactUs.this);
         chatRecycler.setLayoutManager(manager);
 
         checkIfChatBoxExists();
-
     }
 
     public void checkIfChatBoxExists(){
@@ -198,10 +206,13 @@ public class ContactUs extends AppCompatActivity {
                     Log.e("chat","User :New chat box created and message added to the chat thread.");
                 }
             }
-
-
         }
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (isAdmin) menu.add(0,1,0,"User Info").setIcon(R.drawable.ic_info).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -210,7 +221,51 @@ public class ContactUs extends AppCompatActivity {
         if (id==android.R.id.home){
             this.finish();
             return true;
-        }
+        }else if (id==1) showUserDetails();
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showUserDetails(){
+        dialog.setMessage("fetching user details...");
+        dialog.show();
+        DatabaseReference ref=db.getReference().child("Users");
+        final Query query=ref.orderByChild("user_id").equalTo(adminSideFFID);
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if (dataSnapshot!=null){
+                    User currentUser=dataSnapshot.getValue(User.class);
+                    final Dialog myDialog =  new Dialog(ContactUs.this);
+                    myDialog.requestWindowFeature(DialogInterface.BUTTON_NEGATIVE);
+                    myDialog.setContentView(R.layout.card_user_profile);
+                    myDialog.setCancelable(true);
+                    ((TextView)myDialog.findViewById(R.id.profile_name)).setText(currentUser.getName());
+                    ((TextView)myDialog.findViewById(R.id.profile_ffid)).setText(currentUser.getUser_id());
+                    ((TextView)myDialog.findViewById(R.id.profile_collageID)).setText(currentUser.getCollegeid());
+                    ((TextView)myDialog.findViewById(R.id.profile_emailID)).setText(currentUser.getEmail());
+                    ((TextView)myDialog.findViewById(R.id.profile_mobile)).setText(currentUser.getPhone());
+                    ((TextView)myDialog.findViewById(R.id.profile_collage)).setText(currentUser.getCollege());
+                    ((TextView)myDialog.findViewById(R.id.profile_branch)).setText
+                            (currentUser.getYear()+" year, "+currentUser.getDepartment());
+                    ((TextView)myDialog.findViewById(R.id.profile_gender)).setText
+                            (currentUser.getGender()+", "+currentUser.getMos());
+                    dialog.dismiss();
+                    myDialog.show();
+                    query.removeEventListener(this);
+                }
+            }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 }

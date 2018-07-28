@@ -62,6 +62,7 @@
         app:bmb_boomEnum="boomParabola_2"
         app:bmb_buttonEnum="ham"
         app:bmb_normalColor="@color/orange"
+        app:bmb_shadowEffect="true"
         app:bmb_buttonPlaceEnum="buttonPlace_ham_3"
         app:bmb_piecePlaceEnum="piecePlace_ham_3"
         app:bmb_showMoveEaseEnum="inOutQuint" />

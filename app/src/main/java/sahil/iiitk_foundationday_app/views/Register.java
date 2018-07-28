@@ -71,7 +71,7 @@ public class Register extends AppCompatActivity
             bundle_phone = "", year = "", college = "", mos = "Hosteller",username="",password="";
     User user = new User();
     String[] arraySpinner = new String[] {
-            "First", "Second", "Third", "Fourth","Fifth","Faculty"
+            "First", "Second", "Third", "Fourth","Fifth","Alumni","Faculty"
     };
     String[] arraySpinner2 = new String[]{
             "IIIT KOTA", "MNIT JAIPUR", "Others"
