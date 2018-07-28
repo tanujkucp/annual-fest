@@ -145,7 +145,7 @@ public class Login_Screen extends AppCompatActivity
     }
     private void callLogInDialog()
     {
-        final Dialog myDialog =  new Dialog(this,R.style.AppTheme_NoActionBar);
+        final Dialog myDialog =  new Dialog(this);
         myDialog.setContentView(R.layout.id_k);
         myDialog.setCancelable(true);
         myDialog.setTitle("FFID");
@@ -175,7 +175,7 @@ public class Login_Screen extends AppCompatActivity
 
     private void callPhoneLogInDialog()
     {
-        final Dialog myDialog =  new Dialog(this,R.style.AppTheme_NoActionBar);
+        final Dialog myDialog =  new Dialog(this);
         myDialog.setContentView(R.layout.phone_verify);
         myDialog.setCancelable(true);
         myDialog.setTitle("Verify phone number");

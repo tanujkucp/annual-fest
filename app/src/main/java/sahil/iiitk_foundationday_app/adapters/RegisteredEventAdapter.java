@@ -16,11 +16,13 @@ public class RegisteredEventAdapter extends RecyclerView.Adapter<RegisteredEvent
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView name,details;
+        private final View separator;
 
         public ViewHolder(View v) {
             super(v);
             name = v.findViewById(R.id.card_regEvent_name);
             details =  v.findViewById(R.id.card_regEvent_details);
+            separator=v.findViewById(R.id.card_registered_separator);
         }
 
         public TextView getNameView() {
@@ -29,6 +31,7 @@ public class RegisteredEventAdapter extends RecyclerView.Adapter<RegisteredEvent
         public TextView getDetailsView(){
             return details;
         }
+        public View getSeparator(){ return separator;}
     }
 
     public RegisteredEventAdapter(List<SingleEventPersonal> data){
@@ -49,6 +52,7 @@ public class RegisteredEventAdapter extends RecyclerView.Adapter<RegisteredEvent
         // with that element
         viewHolder.getNameView().setText(events.get(pos).getEvent_name());
         viewHolder.getDetailsView().setText("by "+events.get(pos).getUser_name()+" on "+events.get(pos).getDate()+".");
+        if (pos==getItemCount()-1) viewHolder.getSeparator().setVisibility(View.INVISIBLE);
     }
 
     @Override

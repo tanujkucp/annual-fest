@@ -1,6 +1,7 @@
 package sahil.iiitk_foundationday_app.adapters;
 //Made by Tanuj
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
@@ -30,23 +31,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 public void onClick(View v) {
                     //display detailed data in a dialog
                     User currentUser=users.get(getAdapterPosition());
-                    AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                    builder.setTitle(""+currentUser.getName());
-                    String details=""+currentUser.getUser_id()+"\n"+currentUser.getCollegeid();
-                    details+="\n"+currentUser.getEmail()+"\nContact: "+currentUser.getPhone();
-                    details+="\n"+currentUser.getDepartment()+"\n"+currentUser.getCollege();
-                    details+="\n"+currentUser.getGender()+"\n"+currentUser.getYear()+" Year, "+currentUser.getMos();
-                    details+="\nQuiz: Correct= "+currentUser.getQuiz_correct()+", Lives Left= "+currentUser.getQuiz_lives();
+                    final Dialog myDialog =  new Dialog(context);
+                    myDialog.requestWindowFeature(DialogInterface.BUTTON_NEGATIVE);
+                    myDialog.setContentView(R.layout.card_user_profile);
+                    myDialog.setCancelable(true);
+                    ((TextView)myDialog.findViewById(R.id.profile_name)).setText(currentUser.getName());
+                    ((TextView)myDialog.findViewById(R.id.profile_ffid)).setText(currentUser.getUser_id());
+                    ((TextView)myDialog.findViewById(R.id.profile_collageID)).setText(currentUser.getCollegeid());
+                    ((TextView)myDialog.findViewById(R.id.profile_emailID)).setText(currentUser.getEmail());
+                    ((TextView)myDialog.findViewById(R.id.profile_mobile)).setText(currentUser.getPhone());
+                    ((TextView)myDialog.findViewById(R.id.profile_collage)).setText(currentUser.getCollege());
+                    ((TextView)myDialog.findViewById(R.id.profile_branch)).setText
+                            (currentUser.getYear()+" year, "+currentUser.getDepartment());
+                    ((TextView)myDialog.findViewById(R.id.profile_gender)).setText
+                            (currentUser.getGender()+", "+currentUser.getMos());
 
-                    builder.setMessage(details);
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    AlertDialog dialog=builder.create();
-                    dialog.show();
+                    myDialog.show();
                 }
             });
         }
@@ -67,8 +67,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view.
-        View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.card_user, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_user, viewGroup, false);
         return new ViewHolder(v);
     }
 
@@ -76,8 +75,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder viewHolder, final int pos) {
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getNameView().setText(users.get(pos).getUser_id()+" | " +
-                ""+users.get(pos).getName());
+        viewHolder.getNameView().setText(users.get(pos).getUser_id()+" | "+""+users.get(pos).getName());
         viewHolder.getContactView().setText(""+users.get(pos).getEmail());
     }
 

@@ -65,36 +65,44 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
         android:background="@color/blue300" />
-    <TextView
-        android:id="@+id/tv_name5"
-        android:layout_width="match_parent"
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
         android:layout_below="@+id/label_app"
-        android:layout_height="wrap_content"
-        android:text="Tanuj Mehta"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:textColor="@color/blue800"/>
-    <TextView
-        android:id="@+id/tv_number5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_name5"
-        android:text="+91-76655 17141"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:textSize="15dp"/>
-    <TextView
-        android:id="@+id/tv_info5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_number5"
-        android:text="App developer"
-        android:gravity="center"
-        android:textColor="@color/grey800"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_name5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tanuj Mehta"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="@color/blue800"/>
+        <TextView
+            android:id="@+id/tv_number5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name5"
+            android:text="+91-76655 17141"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15dp"/>
+        <TextView
+            android:id="@+id/tv_info5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_number5"
+            android:text="App developer"
+            android:gravity="center"
+            android:textColor="@color/grey800"/>
+    </RelativeLayout>
+
 
     <TextView
-        android:layout_below="@+id/tv_number5"
+        android:layout_below="@+id/relative"
         android:id="@+id/label_emailus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

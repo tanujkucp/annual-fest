@@ -27,7 +27,6 @@
                 android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shivam Gurjar"
                 android:layout_below="@id/user_profile_icon"
                 android:layout_centerHorizontal="true"
                 android:textSize="24dp"
@@ -37,7 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/profile_name"
-                android:text="FF1245"
                 android:textSize="16dp"
                 android:layout_marginBottom="3dp"
                 android:layout_centerHorizontal="true"
@@ -58,8 +56,7 @@
                     android:textSize="16dp"
                     android:paddingLeft="3dp"
                     android:textColor="@color/grey800"
-                    android:layout_margin="3dp"
-                    android:text="2017Kucp1015"/>
+                    android:layout_margin="3dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -72,7 +69,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_collageID"
-                    android:text="emailID"
                     android:textSize="16dp"
                     android:paddingLeft="3dp"
                     android:textColor="@color/grey800"
@@ -87,7 +83,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_emailID"
-                    android:text="8821907414"
                     android:textSize="16dp"
                     android:paddingLeft="3dp"
                     android:textColor="@color/grey800"
@@ -102,7 +97,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_mobile"
-                    android:text="IIIT Kota"
                     android:textSize="16dp"
                     android:paddingLeft="3dp"
                     android:textColor="@color/grey800"
@@ -117,7 +111,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_collage"
-                    android:text="CSE"
                     android:paddingLeft="3dp"
                     android:textSize="16dp"
                     android:textColor="@color/grey800"
@@ -127,42 +120,12 @@
                     android:layout_height="1dp"
                     android:background="@color/blue900"
                     android:layout_below="@id/profile_branch"/>
-                <TextView
-                    android:id="@+id/profile_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/profile_branch"
-                    android:text="Year"
-                    android:paddingLeft="3dp"
-                    android:textSize="16dp"
-                    android:textColor="@color/grey800"
-                    android:layout_margin="4dp"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/blue900"
-                    android:layout_below="@id/profile_year"/>
+
                 <TextView
                     android:id="@+id/profile_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/profile_year"
-                    android:text="Male"
-                    android:paddingLeft="3dp"
-                    android:textSize="16dp"
-                    android:textColor="@color/grey800"
-                    android:layout_margin="4dp"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/blue900"
-                    android:layout_below="@id/profile_gender"/>
-                <TextView
-                    android:id="@+id/profile_from"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/profile_gender"
-                    android:text="Hosteller"
+                    android:layout_below="@id/profile_branch"
                     android:paddingLeft="3dp"
                     android:textSize="16dp"
                     android:textColor="@color/grey800"

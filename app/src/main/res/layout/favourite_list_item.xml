@@ -21,6 +21,7 @@
         />
 
     <View
+        android:id="@+id/fav_list_item_separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"

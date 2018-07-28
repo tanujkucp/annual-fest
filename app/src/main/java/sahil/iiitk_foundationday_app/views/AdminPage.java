@@ -32,6 +32,7 @@ public class AdminPage extends AppCompatActivity
     Boolean isPrimaryFileRead=false;
     String club_name;
     JSONArray pri_clubs;
+    ViewPagerAdapter adapter;
 
 ////////interface methods for use of fragments
     @Override
@@ -95,7 +96,7 @@ public class AdminPage extends AppCompatActivity
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new AdminRegistrationsFragment(), "Registrations");
         adapter.addFrag(new AdminInsightsFragment(),"Insights");
         adapter.addFrag(new AdminActionsFragment(),"Actions");
@@ -129,8 +130,9 @@ public class AdminPage extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        this.finish();
+        int pos=mViewPager.getCurrentItem()-1;
+        if (pos>=0) mViewPager.setCurrentItem(pos,true);
+        else this.finish();
     }
 
     public void readFile(){

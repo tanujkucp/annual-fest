@@ -2,6 +2,7 @@ package sahil.iiitk_foundationday_app.views;
 //Made by Tanuj
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -50,6 +51,7 @@ public class AdminRegistrationsFragment extends Fragment {
     ArrayList<String> team_names=new ArrayList<>();
     EventNamesInterface provider;
     SharedPreferences sequencePref;
+    ProgressDialog dialog;
 
     public interface EventNamesInterface{
         public String[] getEventNames(int club_number);
@@ -87,6 +89,9 @@ public class AdminRegistrationsFragment extends Fragment {
                 Toast.makeText(getActivity(), "Reload this page after connecting to internet.", Toast.LENGTH_LONG).show();
                 getActivity().finish();
         }
+        dialog=new ProgressDialog(getActivity());
+        dialog.setMessage("fetching registered teams...");
+        dialog.setCancelable(false);
 
         //show event names in spinner
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,event_names);
@@ -97,6 +102,7 @@ public class AdminRegistrationsFragment extends Fragment {
         event_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                dialog.show();
                 getRegisteredTeams(position);
             }
             @Override
@@ -185,6 +191,7 @@ public class AdminRegistrationsFragment extends Fragment {
         //Log.e("adminpage",ffids.toString());
         ArrayAdapter adapter=new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,team_names);
         list.setAdapter(adapter);
+        dialog.dismiss();
     }
 
     public void startTapTargets(){

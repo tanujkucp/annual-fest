@@ -15,6 +15,10 @@
             android:id="@+id/nav_queries"
             android:icon="@drawable/icon_queries"
             android:title="Chat With Us" />
+
+        <item android:id="@+id/nav_email"
+            android:title="Email us"
+            android:icon="@drawable/ic_mail"/>
         <item
             android:id="@+id/nav_quiz"
             android:icon="@drawable/icon_game"
