@@ -60,11 +60,13 @@
     <color name="blue500">#2196F3</color>
     <color name="blue200">#90CAF9</color>
     <color name="blue300">#64B5F6</color>
+    <color name="blue400">#42A5F5</color>
     <color name="blue800">#1565C0</color>
     <color name="blue900">#0D47A1</color>
     <color name="blue100">#BBDEFB</color>
 
     <color name="green600">#43A047</color>
+    <color name="green400">#66BB6A</color>
     <color name="red500">#F44336</color>
 
     <color name="pink800">#D81B60</color>

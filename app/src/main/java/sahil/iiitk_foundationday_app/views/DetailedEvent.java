@@ -338,6 +338,7 @@ public class DetailedEvent extends AppCompatActivity {
                             .normalImageRes(R.drawable.ic_favorite_border);
                     bmb.setBuilder(4,builder5);
                     new MyToast(DetailedEvent.this,e_name+" removed from favourites!",Toast.LENGTH_SHORT,false).show();
+                    isFavourite=false;
                     break;
                 }
             }
@@ -349,7 +350,7 @@ public class DetailedEvent extends AppCompatActivity {
                     .normalImageRes(R.drawable.ic_favorite);
             bmb.setBuilder(4,builder5);
             new MyToast(DetailedEvent.this,e_name+" added as favourite!",Toast.LENGTH_SHORT,true).show();
-
+            isFavourite=true;
         }
     }
 

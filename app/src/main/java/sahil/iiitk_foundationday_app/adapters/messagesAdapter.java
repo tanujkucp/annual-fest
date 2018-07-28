@@ -1,9 +1,11 @@
 package sahil.iiitk_foundationday_app.adapters;
 //Made by Tanuj
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,18 +94,16 @@ public class messagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ViewHolderOut outView=(ViewHolderOut) viewHolder;
             outView.getMessageText().setText(messages.get(pos).getMessage());
             outView.getMessageTime().setText(messages.get(pos).getTime());
+
             RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams
                             (RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-                    Resources r = context.getResources();
-                    float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, r.getDisplayMetrics());
-                    layoutParams.setMargins((int)px,0,0,0);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                     card.setLayoutParams(layoutParams);
         }else{
             ViewHolderIn inView=(ViewHolderIn) viewHolder;
             inView.getMsgView().setText(messages.get(pos).getMessage());
             inView.getTime().setText(messages.get(pos).getTime());
         }
-
     }
 
     @Override

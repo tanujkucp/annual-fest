@@ -12,14 +12,13 @@
         app:cardCornerRadius="15dp"
         android:id="@+id/message_card"
         android:layoutDirection="ltr"
-        android:minWidth="100dp"
-        app:cardBackgroundColor="@color/blue300"
+        android:minWidth="120dp"
+        app:cardBackgroundColor="@color/blue400"
         android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_marginRight="10dp"
             android:layoutDirection="ltr">
 
@@ -31,6 +30,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="left"
+                android:maxWidth="270dp"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -38,11 +38,13 @@
                 android:id="@+id/message_time_out"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@id/message_msg_out"
                 android:layout_below="@+id/message_msg_out"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="0dp"
+                android:layout_marginLeft="-30dp"
                 android:text="12:00 am"
+                android:maxLines="1"
                 android:textColor="@color/white_two"
                 android:textSize="12sp" />
         </RelativeLayout>
