@@ -71,7 +71,7 @@ public class EventRegActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         savedData = getSharedPreferences("userInfo", MODE_PRIVATE);
 
-        dialog=new ProgressDialog(this);
+        dialog=new ProgressDialog(this,R.style.AlertDialogCustom);
         dialog.setCancelable(false);
 
         //get values passed by intent

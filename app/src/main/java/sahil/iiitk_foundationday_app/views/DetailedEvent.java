@@ -77,7 +77,7 @@ public class DetailedEvent extends AppCompatActivity {
         storage=FirebaseStorage.getInstance();
         db=FirebaseDatabase.getInstance();
         path=getCacheDir();
-        dialog=new ProgressDialog(DetailedEvent.this);
+        dialog=new ProgressDialog(DetailedEvent.this,R.style.AlertDialogCustom);
         dialog.setMessage("fetching interesting details...");
         dialog.setCancelable(false);
         dialog.show();

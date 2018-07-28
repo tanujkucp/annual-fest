@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity
         //read the primary file data
         readFile();
 
-        dialog=new ProgressDialog(MainActivity.this);
+        dialog=new ProgressDialog(MainActivity.this,R.style.AlertDialogCustom);
         dialog.setCancelable(false);
     }
 

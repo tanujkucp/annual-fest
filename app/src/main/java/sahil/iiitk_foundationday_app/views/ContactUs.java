@@ -64,7 +64,7 @@ public class ContactUs extends AppCompatActivity {
         chatRecycler=findViewById(R.id.chat_messages_recycler);
         textBox=findViewById(R.id.chat_textBox);
         progressBar=findViewById(R.id.chat_progressBar);
-        dialog=new ProgressDialog(ContactUs.this);
+        dialog=new ProgressDialog(ContactUs.this,R.style.AlertDialogCustom);
         dialog.setCancelable(false);
 
         ActionBar actionBar=getSupportActionBar();

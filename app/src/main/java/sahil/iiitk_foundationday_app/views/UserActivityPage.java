@@ -78,7 +78,7 @@ public class UserActivityPage extends AppCompatActivity {
         pref=getSharedPreferences("userInfo",MODE_PRIVATE);
         ffid=pref.getString("FFID","");
         favourites=getSharedPreferences("fav"+ffid,MODE_PRIVATE);
-        dialog=new ProgressDialog(UserActivityPage.this);
+        dialog=new ProgressDialog(UserActivityPage.this,R.style.AlertDialogCustom);
         dialog.setCancelable(false);
         //show user profile details
         showProfile();

@@ -62,7 +62,7 @@ public class QuizActivity extends AppCompatActivity {
         question_view=findViewById(R.id.quiz_question);
         progressBar=findViewById(R.id.timer);
         //show a dialog until data is downloaded
-        dialog=new ProgressDialog(this);
+        dialog=new ProgressDialog(this,R.style.AlertDialogCustom);
         dialog.setMessage("Hang up a bit...We are loading...");
         dialog.setCancelable(false);
         dialog.show();

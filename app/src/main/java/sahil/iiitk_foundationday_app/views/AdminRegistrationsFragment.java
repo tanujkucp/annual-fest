@@ -89,7 +89,7 @@ public class AdminRegistrationsFragment extends Fragment {
                 Toast.makeText(getActivity(), "Reload this page after connecting to internet.", Toast.LENGTH_LONG).show();
                 getActivity().finish();
         }
-        dialog=new ProgressDialog(getActivity());
+        dialog=new ProgressDialog(getActivity(),R.style.AlertDialogCustom);
         dialog.setMessage("fetching registered teams...");
         dialog.setCancelable(false);
 

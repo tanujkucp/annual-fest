@@ -76,7 +76,7 @@ public class EventsFragment extends Fragment {
         path=getActivity().getCacheDir();
         names=new ArrayList<>();
         image_names=new ArrayList<>();
-        dialog=new ProgressDialog(getActivity());
+        dialog=new ProgressDialog(getActivity(),R.style.AlertDialogCustom);
         dialog.setMessage("fetching fun events...");
         dialog.setCancelable(false);
         dialog.show();
