@@ -1,16 +1,26 @@
 package sahil.iiitk_foundationday_app.views;
 //Made by Tanuj
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,14 +36,26 @@ import sahil.iiitk_foundationday_app.adapters.FavouriteListAdapter;
 import sahil.iiitk_foundationday_app.adapters.RegisteredEventAdapter;
 import sahil.iiitk_foundationday_app.model.MyPersonalRegistrations;
 import sahil.iiitk_foundationday_app.model.SingleEventPersonal;
+import sahil.iiitk_foundationday_app.model.User;
 
 public class UserActivityPage extends AppCompatActivity {
 
-    String ffid;
+    String ffid,selectedYear;
     SharedPreferences pref,favourites;
     FirebaseDatabase db;
     List<SingleEventPersonal> listOfRegistrations;
     RecyclerView reg_recycler,fav_recycler;
+    String[] arraySpinner = new String[] {
+            "First", "Second", "Third", "Fourth","Fifth","Alumni","Faculty"
+    };
+    ProgressDialog dialog;
+    View profile;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0,2,0,"Update Year").setIcon(R.drawable.ic_update).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +63,7 @@ public class UserActivityPage extends AppCompatActivity {
         setContentView(R.layout.activity_user_page);
         reg_recycler=findViewById(R.id.myactivity_reg_recycler);
         fav_recycler=findViewById(R.id.myactivity_fav_recycler);
+        profile=findViewById(R.id.include_profile);
 
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -55,7 +78,8 @@ public class UserActivityPage extends AppCompatActivity {
         pref=getSharedPreferences("userInfo",MODE_PRIVATE);
         ffid=pref.getString("FFID","");
         favourites=getSharedPreferences("fav"+ffid,MODE_PRIVATE);
-
+        dialog=new ProgressDialog(UserActivityPage.this);
+        dialog.setCancelable(false);
         //show user profile details
         showProfile();
 
@@ -67,7 +91,6 @@ public class UserActivityPage extends AppCompatActivity {
     }
 
     public void showProfile(){
-        View profile=findViewById(R.id.include_profile);
         ((TextView)profile.findViewById(R.id.profile_name)).setText(pref.getString("name",""));
         ((TextView)profile.findViewById(R.id.profile_ffid)).setText(pref.getString("FFID",""));
         ((TextView)profile.findViewById(R.id.profile_collageID)).setText(pref.getString("collegeid",""));
@@ -136,7 +159,88 @@ public class UserActivityPage extends AppCompatActivity {
         if (id==android.R.id.home){
             onBackPressed();
             return true;
+        }else if (id== 2){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Select Year");
+            final Spinner spinner=new Spinner(this);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,arraySpinner);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+            spinner.setSelected(false);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    int pos = adapterView.getSelectedItemPosition();
+                    selectedYear = arraySpinner[pos];
+                }
+                public void onNothingSelected(AdapterView<?> adapterView){
+
+                }
+            });
+            builder.setView(spinner);
+            builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (selectedYear!=null) updateYear();
+                    else Toast.makeText(UserActivityPage.this,"Select an option!",Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void updateYear(){
+        dialog.setMessage("updating...");
+        dialog.show();
+        DatabaseReference ref=db.getReference().child("Users");
+        final Query query=ref.orderByChild("user_id").equalTo(pref.getString("FFID",""));
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if (dataSnapshot!=null){
+                    User fetch=dataSnapshot.getValue(User.class);
+                    fetch.setYear(selectedYear);
+                    dataSnapshot.getRef().setValue(fetch).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            SharedPreferences.Editor editor=pref.edit();
+                            editor.putString("Year",selectedYear);
+                            editor.apply();
+                            ((TextView)profile.findViewById(R.id.profile_branch)).setText
+                                    (pref.getString("Year","")+" year, "+pref.getString("department",""));
+                            Toast.makeText(UserActivityPage.this,"Year updated!",Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(UserActivityPage.this,"Update failed! Try again later.",Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    });
+                    query.removeEventListener(this);
+                }
+
+            }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 }

@@ -182,6 +182,7 @@
         android:layout_height="wrap_content"
         app:bmb_normalColor="@color/grey500"
         android:layout_gravity="bottom|end"
+        app:bmb_shadowEffect="true"
         app:bmb_buttonEnum="textOutsideCircle"
         app:bmb_buttonPlaceEnum="buttonPlace_sc_5_2"
         app:bmb_piecePlaceEnum="piecePlace_dot_5_3" />
