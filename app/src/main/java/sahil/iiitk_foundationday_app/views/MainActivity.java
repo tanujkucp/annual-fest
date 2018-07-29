@@ -940,9 +940,9 @@ public class MainActivity extends AppCompatActivity
         List<TapTarget> targets=new ArrayList<>();
         // customise these targets with different colors and styles
         targets.add(TapTarget.forToolbarNavigationIcon(toolbar,"Explore Menu"
-                ,"See features like Your profile, Chatforum, Venue ...")
+                ,"See your Profile, Venue Map, Contact options, and many more...")
                 .outerCircleColor(R.color.orange)
-                .outerCircleAlpha(0.7f)
+                .outerCircleAlpha(0.9f)
                 .descriptionTextAlpha(1f)
                 .titleTextSize(25)
                 .descriptionTextColor(R.color.white)
@@ -950,32 +950,32 @@ public class MainActivity extends AppCompatActivity
 
         Log.e("taptarget","adding tap target on logout");
         targets.add(TapTarget.forToolbarMenuItem(toolbar,R.id.logoutInside,"Logout Button"
-                ,"You can logout from here if you want to login with another Flair Fiesta Account!")
+                ,"Click to Logout anytime if you want to login with another Flair Fiesta Account!")
                 .outerCircleColor(R.color.pink800)
-                .outerCircleAlpha(0.7f)
+                .outerCircleAlpha(0.9f)
                 .descriptionTextAlpha(1f)
                 .titleTextSize(25)
                 .descriptionTextColor(R.color.white)
                 .id(2).cancelable(false).transparentTarget(false));
 
-        targets.add(TapTarget.forToolbarMenuItem(toolbar,R.id.bell,"Broadcasts Button"
-                ,"You can see general and event related broadcasts from organisers here!")
+        targets.add(TapTarget.forToolbarMenuItem(toolbar,R.id.bell,"Broadcasts"
+                ,"See general and event related broadcasts from organisers here!")
                 .outerCircleColor(R.color.blue800)
-                .outerCircleAlpha(0.7f)
+                .outerCircleAlpha(0.9f)
                 .descriptionTextAlpha(1f)
                 .titleTextSize(25)
                 .descriptionTextColor(R.color.white)
                 .id(3).cancelable(false).transparentTarget(false));
 
-        targets.add(TapTarget.forView(findViewById(R.id.home_bmb),"We 'r social!"
-                ,"Connect with us on other platforms too...").id(4)
+        targets.add(TapTarget.forView(findViewById(R.id.home_bmb),"We are social!"
+                ,"Connect with us on facebook, instagram and website too...").id(4)
                 .cancelable(false)
                 .outerCircleColor(R.color.green)
-                .outerCircleAlpha(0.7f)
+                .outerCircleAlpha(0.9f)
                 .titleTextSize(25)
                 .descriptionTextAlpha(1f)
                 .descriptionTextColor(R.color.white)
-                .transparentTarget(false));
+                .transparentTarget(true));
 
         TapTargetSequence sequence=new TapTargetSequence(MainActivity.this)
                 .targets(targets)

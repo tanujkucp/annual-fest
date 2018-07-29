@@ -199,7 +199,7 @@ public class AdminRegistrationsFragment extends Fragment {
         if (sequencePref.getBoolean("seq_admin_reg",false)) return;
 
         TapTargetView.showFor(getActivity(),
-                TapTarget.forView(event_spinner,"Events","Select an event to see its registrations!")
+                TapTarget.forView(event_spinner,"Events","Here are all events from your club, select an event to see its registrations!")
                         .transparentTarget(true).cancelable(false).outerCircleColor(R.color.yellow)
                         .outerCircleAlpha(0.9f)
                         .descriptionTextAlpha(1f)

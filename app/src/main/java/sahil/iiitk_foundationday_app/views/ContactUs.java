@@ -290,7 +290,7 @@ public class ContactUs extends AppCompatActivity {
                         "Click here to see full profile of user you are chatting with.")
                         .transparentTarget(false)
                         .cancelable(false).outerCircleColor(R.color.pink800)
-                        .outerCircleAlpha(0.7f)
+                        .outerCircleAlpha(0.9f)
                         .descriptionTextAlpha(1f)
                         .titleTextSize(25)
                         .descriptionTextColor(R.color.white)

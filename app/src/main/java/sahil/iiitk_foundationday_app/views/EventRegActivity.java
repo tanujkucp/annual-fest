@@ -543,18 +543,18 @@ public class EventRegActivity extends AppCompatActivity {
         targets.add(TapTarget.forView(findViewById(R.id.s1),"Team Size"
                 ,"Select team size to enter more user FFIDs.").id(0)
                 .cancelable(false)
-                .outerCircleColor(R.color.green)
-                .outerCircleAlpha(0.7f)
+                .outerCircleColor(R.color.blue800)
+                .outerCircleAlpha(0.9f)
                 .titleTextSize(25)
                 .descriptionTextAlpha(1f)
                 .descriptionTextColor(R.color.white)
-                .transparentTarget(true));
+                .transparentTarget(false));
 
         targets.add(TapTarget.forView(allEds.get(0),"Your FFID"
                 ,"This is your personal FFID. Enter your friends' FFIDs below to make a team.").id(1)
                 .cancelable(false)
-                .outerCircleColor(R.color.green)
-                .outerCircleAlpha(0.7f)
+                .outerCircleColor(R.color.orange)
+                .outerCircleAlpha(0.9f)
                 .titleTextSize(25)
                 .descriptionTextAlpha(1f)
                 .descriptionTextColor(R.color.white)

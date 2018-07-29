@@ -412,17 +412,17 @@ public class AdminActionsFragment extends Fragment {
         targets.add(TapTarget.forView(searchView,"Search here!"
                 ,"Type text here to search specific users.")
                 .outerCircleColor(R.color.blue800)
-                .outerCircleAlpha(0.7f)
+                .outerCircleAlpha(0.9f)
                 .descriptionTextAlpha(1f)
                 .titleTextSize(25)
                 .descriptionTextColor(R.color.white)
                 .id(1)
                 .cancelable(false)
-                .transparentTarget(false));
+                .transparentTarget(true));
         targets.add(TapTarget.forView(spinner,"Search Property"
-                ,"Choose the property to search for like name etc.")
+                ,"Choose a property  like name, FFID, etc. to search.")
                 .outerCircleColor(R.color.orange)
-                .outerCircleAlpha(0.8f)
+                .outerCircleAlpha(0.9f)
                 .descriptionTextAlpha(1f)
                 .titleTextSize(25)
                 .descriptionTextColor(R.color.white)
@@ -432,13 +432,13 @@ public class AdminActionsFragment extends Fragment {
         targets.add(TapTarget.forView(bmb,"Actions"
                 ,"Click here for quick actions like Broadcasts etc.")
                 .outerCircleColor(R.color.purple)
-                .outerCircleAlpha(0.7f)
+                .outerCircleAlpha(0.9f)
                 .descriptionTextAlpha(1f)
                 .titleTextSize(25)
                 .descriptionTextColor(R.color.white)
                 .id(3)
                 .cancelable(false)
-                .transparentTarget(false));
+                .transparentTarget(true));
 
         TapTargetSequence sequence=new TapTargetSequence(getActivity())
                 .targets(targets)

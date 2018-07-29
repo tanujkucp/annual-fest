@@ -267,9 +267,9 @@ public class UserActivityPage extends AppCompatActivity {
 
         TapTargetView.showFor(UserActivityPage.this,
                 TapTarget.forToolbarMenuItem(toolbar,updateId,"Change Year",
-                        "Click here to change year of college.")
-                        .transparentTarget(false).cancelable(false).outerCircleColor(R.color.pink800)
-                        .outerCircleAlpha(0.7f)
+                        "Click here to change the year of study you provided anytime.")
+                        .transparentTarget(false).cancelable(false).outerCircleColor(R.color.blue800)
+                        .outerCircleAlpha(0.9f)
                         .descriptionTextAlpha(1f)
                         .titleTextSize(25)
                         .descriptionTextColor(R.color.white)
