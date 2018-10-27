@@ -339,7 +339,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFrag(new ScheduleFragment(), "SCHEDULE");
         //adapter.addFrag(new SponsorsFragment(), "SPONSORS");
         adapter.addFrag(new HelplineFragment(), "CONTACTS");
-        adapter.addFrag(new TeamFragment(), "TEAM");
+        //adapter.addFrag(new TeamFragment(), "TEAM");
 
         viewPager.setAdapter(adapter);
     }
