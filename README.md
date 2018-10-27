@@ -2,7 +2,7 @@ This repository contains android app project of the college annual fest applicat
 
 This project contains the app for my college's annual festival. This app handles all the necessary features which should be present in such app.
 
-Link to the APK- https://github.com/tanujkucp/FoundationDayApp/blob/master/app/release/app-release.apk or 
+Link to the APK- https://github.com/tanujkucp/annual-fest/blob/master/app/release/app-release.apk or 
 https://drive.google.com/open?id=1pkKNt5TRvQ8al68Ya66cBhPKfEQs8mnp
 
 A list of features is-
